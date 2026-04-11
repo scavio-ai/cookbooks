@@ -7,7 +7,11 @@ recommendation grounded in real listings.
 
 Prerequisites:
   pip install langchain langchain-openai langchain-scavio python-dotenv
-  export SCAVIO_API_KEY="sk_live_..."
+
+  Get a free Scavio API key (500 credits/month, no credit card):
+    https://dashboard.scavio.dev
+
+  export SCAVIO_API_KEY="sk_..."
   export OPENAI_API_KEY="sk-..."
 
 Usage:
