@@ -1,107 +1,155 @@
-# Scavio Cookbook -- 10 AI Agents You Can Build Today
+# Scavio Cookbook: Open-Source LangChain Agents for Amazon, Google, YouTube & Walmart
 
-Open-source AI agents powered by [Scavio](https://scavio.dev) -- the real-time search API for Google, Amazon, YouTube, and Walmart.
+**Production-ready AI agent examples** that search Amazon products, Google results, YouTube videos, and Walmart listings in real time -- built with [LangChain](https://github.com/langchain-ai/langchain) and powered by the [Scavio](https://scavio.dev) search API.
 
-Each agent is a complete, working example you can run, learn from, and adapt for your own projects.
+[![PyPI](https://img.shields.io/pypi/v/langchain-scavio.svg?label=langchain-scavio)](https://pypi.org/project/langchain-scavio/)
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Scavio](https://img.shields.io/badge/powered%20by-Scavio-ff4d00.svg)](https://scavio.dev)
 
-**500 free API credits/month. No credit card required.** [Get your key](https://dashboard.scavio.dev)
-
-## Agents
-
-| # | Agent | Level | What it does | Tools |
-|---|-------|-------|-------------|-------|
-| 1 | [FlipFinder](agents/flipfinder/) | Advanced | Find products to buy on Walmart and resell on Amazon for profit | 6 |
-| 2 | [YouTubeScholar](agents/youtubescholar/) | Beginner | Build free course curricula from YouTube videos | 3 |
-| 3 | [ReviewGuard](agents/reviewguard/) | Intermediate | Detect fake Amazon reviews by cross-referencing YouTube | 5 |
-| 4 | [DealStack](agents/dealstack/) | Intermediate | Build the cheapest shopping cart across Amazon + Walmart | 4 |
-| 5 | [ContentRadar](agents/contentradar/) | Intermediate | Find SEO content gaps your competitors missed | 1 |
-| 6 | [BuyWise](agents/buywise/) | Intermediate | Compare products across Amazon, Walmart, and YouTube reviews | 5 |
-| 7 | [NicheHunter](agents/nichehunter/) | Advanced | Find trending products before they blow up | 5 |
-| 8 | [TubeToPost](agents/tubetopost/) | Beginner | Turn any YouTube video into an SEO-optimized blog post | 3 |
-| 9 | [BrandSpy](agents/brandspy/) | Advanced | Free alternative to $300/month brand monitoring tools | 5 |
-| 10 | [DebateSettler](agents/debatesettler/) | Intermediate | Research both sides of any argument with real sources | 4 |
-
-## Learning Path
-
-New to Scavio? Follow this path:
-
-1. **Start here** -- [Getting Started](getting-started/) -- make your first API call in 5 minutes
-2. **Beginner** -- [YouTubeScholar](agents/youtubescholar/) or [TubeToPost](agents/tubetopost/) -- learn 3 YouTube tools
-3. **Intermediate** -- [ReviewGuard](agents/reviewguard/) or [DealStack](agents/dealstack/) -- cross-platform searches
-4. **Advanced** -- [FlipFinder](agents/flipfinder/) or [NicheHunter](agents/nichehunter/) -- multi-tool orchestration
-
-## Frameworks
-
-Each agent is implemented in multiple frameworks so you can use what you know:
-
-| Framework | Description | Setup |
-|-----------|-------------|-------|
-| **[Agno](https://github.com/agno-agi/agno)** | Lightweight Python agent framework (39k stars). Connects to Scavio via MCP. | `pip install agno` |
-| **[LangChain](https://github.com/langchain-ai/langchain)** | Enterprise AI framework. Uses [langchain-scavio](https://pypi.org/project/langchain-scavio/) for direct API access. | `pip install langchain-scavio` |
-| **[CrewAI](https://github.com/crewAIInc/crewAI)** | Multi-agent orchestration (45k stars). Used for agents with multiple AI roles. | `pip install crewai` |
-
-All agents support both **OpenAI** (GPT-4o) and **Anthropic** (Claude) as the LLM.
-
-## Quick Start
-
-```bash
-# 1. Clone this repo
-git clone https://github.com/scavio-dev/cookbook.git
-cd cookbook
-
-# 2. Pick an agent (e.g., FlipFinder with Agno)
-cd agents/flipfinder/agno
-
-# 3. Install dependencies
-pip install -r requirements.txt
-
-# 4. Set your API keys
-cp .env.example .env
-# Edit .env with your Scavio key (free) and OpenAI/Anthropic key
-
-# 5. Run it
-python main.py "kitchen gadgets"
-```
-
-## Scavio Tools Reference
-
-These 9 tools are available in every agent via MCP or REST API:
-
-| Tool | Platform | What it does |
-|------|----------|-------------|
-| `search_google` | Google | Web search with results, news, PAA, knowledge graph |
-| `search_amazon` | Amazon | Product search with price, rating, and category filters |
-| `get_amazon_product` | Amazon | Full product details by ASIN |
-| `search_walmart` | Walmart | Product search with price, fulfillment, and delivery filters |
-| `get_walmart_product` | Walmart | Full product details by product ID |
-| `search_youtube` | YouTube | Video, channel, and playlist search |
-| `get_youtube_metadata` | YouTube | Video title, views, likes, duration |
-| `get_youtube_transcript` | YouTube | Full timestamped video transcripts |
-| `get_usage` | Scavio | Check credit balance and plan details |
-
-## Two Ways to Connect
-
-**MCP (for AI agents):** Connect to `https://mcp.scavio.dev/mcp` with your API key. Tools are auto-discovered.
-
-**REST API (for apps):** POST to `https://api.scavio.dev/api/v1/{endpoint}` with Bearer auth. Returns JSON.
-
-See [Getting Started](getting-started/) for setup instructions for both methods.
-
-## Contributing
-
-Found a bug? Want to add a new agent? PRs welcome.
-
-- Each agent should be a single file under 200 lines
-- Include a README with demo output and "Build Your Own" section
-- Test with the free tier (500 credits)
-
-## Links
-
-- [Scavio Docs](https://scavio.dev/docs) -- API reference
-- [Scavio Dashboard](https://dashboard.scavio.dev) -- Get your free API key
-- [Scavio Blog](https://scavio.dev/blog) -- Tutorials and guides
-- [langchain-scavio on PyPI](https://pypi.org/project/langchain-scavio/) -- LangChain integration
+> **500 free API credits every month. No credit card required.** [Get your free key in 30 seconds](https://dashboard.scavio.dev)
 
 ---
 
-**Powered by [Scavio](https://scavio.dev)** -- Real-time search API for AI agents. 500 free credits/month.
+## What's inside
+
+- **Working AI agents** you can `git clone` and run in under 5 minutes
+- **Real search APIs** -- not scrapers, not mocks -- Amazon, Google, YouTube transcripts, Walmart
+- **LangChain `create_agent` examples** with tool calling, multi-step reasoning, and grounded outputs
+- **Free alternative** to SerpAPI, ScraperAPI, Bright Data, Jungle Scout, Fakespot, and $149/month SEO tools
+
+## Quick Start (5 minutes)
+
+```bash
+git clone https://github.com/scavio-ai/cookbooks.git
+cd cookbooks
+
+python -m venv .venv
+source .venv/bin/activate
+pip install langchain langchain-openai langchain-scavio python-dotenv
+
+cp .env.example .env
+# Edit .env with SCAVIO_API_KEY (free) and OPENAI_API_KEY
+
+python agents/amazon-agent.py "best wired earbuds under $50"
+```
+
+Output:
+
+```
+Top Pick: Skullcandy Jib Wired Earbuds (ASIN: B075F6TB7F)
+- Rationale: $7.99, 4.4 stars from ~20k reviews, noise-isolating fit.
+- Red Flag: Some users report volume control issues.
+
+Runner-Up: Apple EarPods with Lightning (ASIN: B0D7FVQ1ZB)
+- Rationale: $15.98, 4.6 stars from ~14k reviews, reliable Apple fit.
+- Red Flag: May not fit all ear sizes; sound leakage at high volume.
+```
+
+## Agent Catalog
+
+| # | Agent | Use Case | Status |
+|---|-------|----------|--------|
+| 1 | [AmazonScout](agents/amazon-agent.py) | Amazon product research with grounded recommendations | **Shipped** |
+| 2 | YouTubeScholar | Turn YouTube videos into a free course curriculum | Coming soon |
+| 3 | ReviewGuard | Detect fake Amazon reviews by cross-referencing YouTube | Coming soon |
+| 4 | DealStack | Cheapest shopping cart across Amazon and Walmart | Coming soon |
+| 5 | ContentRadar | Find SEO content gaps your competitors missed | Coming soon |
+| 6 | BuyWise | Compare products across Amazon, Walmart, and YouTube reviews | Coming soon |
+| 7 | NicheHunter | Find trending products before they blow up | Coming soon |
+| 8 | TubeToPost | Turn any YouTube video into an SEO-optimized blog post | Coming soon |
+| 9 | BrandSpy | Free alternative to $300/month brand monitoring tools | Coming soon |
+| 10 | FlipFinder | Retail arbitrage: buy on Walmart, resell on Amazon | Coming soon |
+
+All agents are **single-file, under 200 lines, MIT licensed**. Fork, adapt, ship.
+
+## Why Scavio vs. the alternatives
+
+| Need | Expensive tool | Scavio + LangChain |
+|------|----------------|---------------------|
+| Amazon product search API | Jungle Scout ($49-129/mo) | Free (500 calls/mo) |
+| SERP + People Also Ask | SerpAPI ($75/mo) | Free (500 calls/mo) |
+| YouTube transcripts | Whisper + scraping | One API call |
+| Fake review detection | Fakespot Premium | Cross-reference YouTube reviews for free |
+| Brand monitoring | Brand24 ($99-299/mo) | Free with BrandSpy agent |
+| SEO content gap analysis | Ahrefs ($99-449/mo) | Free with ContentRadar agent |
+
+## LangChain Tools Reference
+
+Install once -- every agent uses the same tools via [langchain-scavio](https://pypi.org/project/langchain-scavio/):
+
+```python
+from langchain_scavio import (
+    ScavioSearch,              # Google search: results, news, PAA, knowledge graph
+    ScavioAmazonSearch,        # Amazon product search
+    ScavioAmazonProduct,       # Amazon product details by ASIN
+    ScavioWalmartSearch,       # Walmart product search
+    ScavioWalmartProduct,      # Walmart product details
+    ScavioYouTubeSearch,       # YouTube video, channel, playlist search
+    ScavioYouTubeMetadata,     # YouTube video metadata
+    ScavioYouTubeTranscript,   # Full timestamped YouTube transcripts
+)
+```
+
+## Build Your Own Agent in 30 Lines
+
+```python
+from dotenv import load_dotenv
+from langchain.agents import create_agent
+from langchain_openai import ChatOpenAI
+from langchain_scavio import ScavioAmazonSearch, ScavioAmazonProduct
+
+load_dotenv(override=True)
+
+agent = create_agent(
+    ChatOpenAI(model="gpt-4o", temperature=0),
+    tools=[ScavioAmazonSearch(max_results=5), ScavioAmazonProduct()],
+    system_prompt="You are a shopping research agent. Cite ASINs.",
+)
+
+result = agent.invoke({
+    "messages": [{"role": "user", "content": "best wired earbuds under $50"}]
+})
+print(result["messages"][-1].content)
+```
+
+Full reference implementation: [agents/amazon-agent.py](agents/amazon-agent.py)
+
+## FAQ
+
+**Is this a free alternative to SerpAPI or ScraperAPI?**
+Yes. Scavio gives you 500 free real-time search credits per month across Google, Amazon, YouTube, and Walmart -- enough to build and ship most personal projects or MVPs.
+
+**Does it work with OpenAI GPT-4o, Claude, and other LLMs?**
+Yes. Every agent uses LangChain's `create_agent`, so you can swap in any chat model: OpenAI, Anthropic Claude, Google Gemini, Groq, local Ollama models, etc.
+
+**Can I use this for e-commerce price monitoring or dropshipping research?**
+Yes. The Amazon + Walmart tools return live pricing, stock, ratings, ASINs, and reviews. See the NicheHunter, FlipFinder, and DealStack agents for examples.
+
+**How do I get YouTube video transcripts?**
+Use `ScavioYouTubeTranscript` -- one call returns the full timestamped transcript of any public YouTube video, ready to pipe into any LLM.
+
+**Is scraping Amazon legal?**
+Scavio is a licensed real-time search provider -- you call Scavio's API, not Amazon's. Your agent stays compliant and your IP never gets blocked.
+
+## Contributing
+
+PRs welcome. Guidelines:
+
+- One agent per file, under 200 lines
+- Short docstring with prerequisites and usage
+- Verified against the free tier (500 credits/month)
+- No emojis, no generated-by-AI attribution
+
+## Resources
+
+- [Scavio Dashboard](https://dashboard.scavio.dev) -- free API key
+- [Scavio Docs](https://scavio.dev/docs) -- REST + MCP reference
+- [langchain-scavio on PyPI](https://pypi.org/project/langchain-scavio/)
+- [LangChain Agents Guide](https://docs.langchain.com/oss/python/langchain/agents)
+
+---
+
+**Keywords:** langchain amazon api, langchain youtube transcript, amazon product search api python, free serpapi alternative, ai shopping agent, langchain agent examples, amazon scraper api free, youtube transcript langchain tool, walmart api langchain, ai agent cookbook, openai amazon agent, gpt-4 shopping assistant, langchain tool calling examples, free amazon product api, ai price comparison agent, fake review detector open source, ai seo content gap finder, brand monitoring open source, retail arbitrage tool open source, people also ask api, google serp api free.
+
+Powered by **[Scavio](https://scavio.dev)** -- the real-time search API for AI agents.
