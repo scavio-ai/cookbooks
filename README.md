@@ -46,6 +46,41 @@ Runner-Up: Apple EarPods with Lightning (ASIN: B0D7FVQ1ZB)
 - Red Flag: May not fit all ear sizes; sound leakage at high volume.
 ```
 
+```bash
+python agents/shopping-agent.py
+```
+
+Interactive session:
+
+```
+ShoppingAssistant -- type 'quit' to exit
+------------------------------------------------------------
+
+What are you shopping for? noise cancelling headphones
+
+Before I search, a few quick questions:
+1. What's your budget?
+2. Over-ear or in-ear?
+3. Any brand preference?
+
+You: under $300, over-ear, no preference
+
+SONY WH-1000XM5 (ASIN: B0BX2L8PBT)
+- $278.00 | 4.4 stars (~15k reviews)
+- Strengths: 30-hour battery, multipoint Bluetooth, lightweight (250g).
+- Weakness: no head-tracking spatial audio.
+
+BOSE QUIETCOMFORT ULTRA (ASIN: B0CCZ1L489)
+- $299.00 | 4.3 stars (~8k reviews)
+- Strengths: immersive spatial audio, best-in-class comfort.
+- Weakness: 24-hour battery, slightly heavier.
+
+VERDICT: Sony WH-1000XM5 for best value and battery life.
+
+You: does the sony have usb-c charging?
+...
+```
+
 ## Agent Catalog
 
 | # | Agent | Use Case | Status |
@@ -55,7 +90,7 @@ Runner-Up: Apple EarPods with Lightning (ASIN: B0D7FVQ1ZB)
 | 3 | ReviewGuard | Detect fake Amazon reviews by cross-referencing YouTube | Coming soon |
 | 4 | DealStack | Cheapest shopping cart across Amazon and Walmart | Coming soon |
 | 5 | ContentRadar | Find SEO content gaps your competitors missed | Coming soon |
-| 6 | BuyWise | Compare products across Amazon, Walmart, and YouTube reviews | Coming soon |
+| 6 | [ShoppingAssistant](agents/shopping-agent.py) | Conversational AI shopping assistant with comparisons and alternatives | **Shipped** |
 | 7 | NicheHunter | Find trending products before they blow up | Coming soon |
 | 8 | TubeToPost | Turn any YouTube video into an SEO-optimized blog post | Coming soon |
 | 9 | BrandSpy | Free alternative to $300/month brand monitoring tools | Coming soon |
