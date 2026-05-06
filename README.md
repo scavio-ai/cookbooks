@@ -120,6 +120,10 @@ Do not paste the same comment across threads.
 | 9 | BrandSpy | Free alternative to $300/month brand monitoring tools | Coming soon |
 | 10 | FlipFinder | Retail arbitrage: buy on Walmart, resell on Amazon | Coming soon |
 | 11 | [RedditRadar](agents/reddit-radar.py) | Find live Reddit threads to engage in for soft-promo / GTM | **Shipped** |
+| 12 | [PriceWar](agents/pricewar.py) | Amazon vs Walmart arbitrage finder for resellers | **Shipped** |
+| 13 | [BuyOrNot](agents/buyornot.py) | Multi-platform buy/skip verdict across 5 sources | **Shipped** |
+| 14 | [BrandPulse](agents/brandpulse.py) | Reddit + Google brand sentiment monitor | **Shipped** |
+| 15 | [TrendTap](agents/trendtap.py) | YouTube + Reddit content gap finder for creators | **Shipped** |
 
 All agents are **single-file, under 200 lines, MIT licensed**. Fork, adapt, ship.
 
