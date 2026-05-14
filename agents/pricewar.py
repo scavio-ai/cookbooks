@@ -1,14 +1,18 @@
 """
-PriceWar: Amazon vs Walmart arbitrage finder.
+PriceWar: Amazon vs Walmart price comparison and retail arbitrage agent.
 
-Give it a product keyword. It searches both Amazon and Walmart, matches
-products across platforms, calculates price deltas and margins, and
-surfaces the best arbitrage opportunities for resellers and dropshippers.
+A free alternative to Tactical Arbitrage and BuyBotPro. Give it a product
+keyword and it searches both Amazon and Walmart, matches products across
+platforms, calculates price deltas and profit margins, and surfaces the
+best arbitrage opportunities for resellers, dropshippers, and FBA sellers.
+
+Built with LangChain create_agent, OpenAI tool calling, and langchain-scavio
+Amazon + Walmart search tools.
 
 Prerequisites:
   pip install langchain langchain-openai langchain-scavio python-dotenv
 
-  Get a free Scavio API key (500 credits/month, no credit card):
+  Get a free Scavio API key (250 credits/month, no credit card):
     https://dashboard.scavio.dev
 
   export SCAVIO_API_KEY="sk_..."

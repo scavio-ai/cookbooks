@@ -1,24 +1,28 @@
 """
-A conversational AI shopping assistant that guides you from discovery to
-purchase decision -- grounded in live Amazon data.
+ShoppingAssistant: conversational AI shopping chatbot with live Amazon prices.
 
-Unlike a basic product search, this agent handles natural-language queries,
+An interactive LangChain agent that guides you from product discovery to
+purchase decision. Unlike basic product search, it asks clarifying questions,
 compares products head-to-head, suggests alternatives when something is out
-of stock or over budget, and answers specific product questions from real
-listing data.
+of stock or over budget, and answers follow-up questions from real Amazon
+listing data. Multi-turn conversation with memory.
+
+Built with LangChain create_agent, OpenAI tool calling, and langchain-scavio
+Amazon product search API. Free alternative to AI shopping assistants that
+charge per query.
 
 Prerequisites:
   pip install langchain langchain-openai langchain-scavio python-dotenv
 
-  Get a free Scavio API key (500 credits/month, no credit card):
+  Get a free Scavio API key (250 credits/month, no credit card):
     https://dashboard.scavio.dev
 
   export SCAVIO_API_KEY="sk_..."
   export OPENAI_API_KEY="sk-..."
 
 Usage:
-  python shopping-agent.py
-  python shopping-agent.py "waterproof bluetooth speaker for pool parties under $50"
+  python agents/shopping-agent.py
+  python agents/shopping-agent.py "waterproof bluetooth speaker under $50"
 """
 
 import sys

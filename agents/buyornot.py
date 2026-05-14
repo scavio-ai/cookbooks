@@ -1,14 +1,19 @@
 """
-BuyOrNot: multi-platform product research that tells you whether to buy.
+BuyOrNot: AI product review aggregator across Amazon, Walmart, YouTube, and Reddit.
 
-Ask it about any product and it fans out to Google, Amazon, Walmart,
-YouTube, and Reddit. It synthesizes a verdict with pros, cons, the best
-price across platforms, and red flags from real user reviews.
+A free alternative to Fakespot, ReviewMeta, and Wirecutter research.
+Ask it about any product and it searches Google, Amazon, Walmart, YouTube
+reviews, and Reddit threads. Returns a buy-or-skip verdict with pros,
+cons, the best price across platforms, and red flags from real user
+reviews. Multi-source product comparison in one LangChain agent call.
+
+Built with LangChain create_agent, OpenAI tool calling, and 9 langchain-scavio
+search tools.
 
 Prerequisites:
   pip install langchain langchain-openai langchain-scavio python-dotenv
 
-  Get a free Scavio API key (500 credits/month, no credit card):
+  Get a free Scavio API key (250 credits/month, no credit card):
     https://dashboard.scavio.dev
 
   export SCAVIO_API_KEY="sk_..."

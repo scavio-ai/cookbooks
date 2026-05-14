@@ -1,29 +1,32 @@
 """
-RedditRadar: find live Reddit threads where you can authentically engage to
-surface your product.
+RedditRadar: AI Reddit lead generation and GTM agent for founders.
 
-Reddit is one of the highest-converting channels for indie hackers and SaaS
-founders -- but the work is hunting for the *right* conversations: someone
-asking for exactly what you built, in a subreddit that tolerates soft-promo,
-in a thread that is still active. RedditRadar automates that hunt.
+A free alternative to GummySearch and F5Bot for Reddit marketing. Finds
+live Reddit threads where you can authentically engage to surface your
+product. Perfect for indie hackers, SaaS founders, and startups doing
+Reddit GTM -- automates the hunt for high-intent threads where someone
+is asking for exactly what you built.
 
-Give it your product and keywords. It expands into Reddit-intent queries,
-searches new posts, filters for unresolved asks, reads the ones that qualify,
-and ranks the best engagement opportunities.
+Give it your product brief. It expands into Reddit-intent queries,
+searches new posts, filters for unresolved asks, deep-reads the best
+threads, and ranks engagement opportunities by fit and recency.
+
+Built with LangChain create_agent, OpenAI tool calling, and langchain-scavio
+Reddit search tools.
 
 Prerequisites:
   pip install langchain langchain-openai langchain-scavio python-dotenv
 
-  Get a free Scavio API key (500 credits/month, no credit card):
+  Get a free Scavio API key (250 credits/month, no credit card):
     https://dashboard.scavio.dev
 
   export SCAVIO_API_KEY="sk_..."
   export OPENAI_API_KEY="sk-..."
 
 Usage:
-  python reddit-radar.py "Scavio is a real-time search API for AI agents -- \
-a free alternative to SerpAPI. Find threads where people ask for serpapi \
-alternatives, amazon product APIs, or langchain search tools."
+  python agents/reddit-radar.py "Scavio is a real-time search API for AI \
+agents -- a free alternative to SerpAPI. Find threads where people ask \
+for serpapi alternatives, amazon product APIs, or langchain search tools."
 """
 
 import sys
@@ -123,7 +126,7 @@ def run(brief: str) -> str:
 
 DEFAULT_BRIEF = (
     "Scavio is a real-time search API for AI agents -- a free alternative "
-    "to SerpAPI with 500 credits/month. Find threads where people ask for "
+    "to SerpAPI with 250 credits/month. Find threads where people ask for "
     "SerpAPI alternatives, Amazon product APIs, or LangChain search tools."
 )
 

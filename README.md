@@ -1,22 +1,22 @@
-# Scavio Cookbook: Open-Source LangChain Agents for Amazon, Google, YouTube & Walmart
+# Scavio Cookbook: Open-Source LangChain Agents for Amazon, Google, YouTube, Walmart & TikTok
 
-**Production-ready AI agent examples** that search Amazon products, Google results, YouTube videos, and Walmart listings in real time -- built with [LangChain](https://github.com/langchain-ai/langchain) and powered by the [Scavio](https://scavio.dev) search API.
+**Production-ready AI agent examples** that search Amazon products, Google results, YouTube videos, Walmart listings, and TikTok creators in real time -- built with [LangChain](https://github.com/langchain-ai/langchain) and powered by the [Scavio](https://scavio.dev) search API.
 
 [![PyPI](https://img.shields.io/pypi/v/langchain-scavio.svg?label=langchain-scavio)](https://pypi.org/project/langchain-scavio/)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Scavio](https://img.shields.io/badge/powered%20by-Scavio-ff4d00.svg)](https://scavio.dev)
 
-> **500 free API credits every month. No credit card required.** [Get your free key in 30 seconds](https://dashboard.scavio.dev)
+> **250 free API credits every month. No credit card required.** [Get your free key in 30 seconds](https://dashboard.scavio.dev)
 
 ---
 
 ## What's inside
 
 - **Working AI agents** you can `git clone` and run in under 5 minutes
-- **Real search APIs** -- not scrapers, not mocks -- Amazon, Google, YouTube transcripts, Walmart
+- **Real search APIs** -- not scrapers, not mocks -- Amazon, Google, YouTube transcripts, Walmart, Reddit, TikTok
 - **LangChain `create_agent` examples** with tool calling, multi-step reasoning, and grounded outputs
-- **Free alternative** to SerpAPI, ScraperAPI, Bright Data, Jungle Scout, Fakespot, and $149/month SEO tools
+- **Free alternative** to SerpAPI, ScraperAPI, Bright Data, Jungle Scout, Fakespot, GummySearch, Modash, and $149/month SEO tools
 
 ## Quick Start (5 minutes)
 
@@ -95,7 +95,7 @@ Score: 8/10  (recency + fit + openness)
 OP is asking: Sharing a cost-cutting stack that replaces expensive SEO tools.
 Why it fits: Scavio is a free SerpAPI alternative that slots into that stack.
 Angle: Share that you replaced your SerpAPI spend with Scavio (free tier,
-       500 calls/mo) and note the LangChain integration for agent workflows.
+       250 calls/mo) and note the LangChain integration for agent workflows.
 
 #2  r/DigitalMarketing  --  9 days ago
 Thread: Replaced Semrush with the Gemini API and search grounding...
@@ -124,6 +124,7 @@ Do not paste the same comment across threads.
 | 13 | [BuyOrNot](agents/buyornot.py) | Multi-platform buy/skip verdict across 5 sources | **Shipped** |
 | 14 | [BrandPulse](agents/brandpulse.py) | Reddit + Google brand sentiment monitor | **Shipped** |
 | 15 | [TrendTap](agents/trendtap.py) | YouTube + Reddit content gap finder for creators | **Shipped** |
+| 16 | [TikFluencer](agents/tikfluencer.py) | TikTok influencer discovery for product campaigns | **Shipped** |
 
 All agents are **single-file, under 200 lines, MIT licensed**. Fork, adapt, ship.
 
@@ -131,13 +132,14 @@ All agents are **single-file, under 200 lines, MIT licensed**. Fork, adapt, ship
 
 | Need | Expensive tool | Scavio + LangChain |
 |------|----------------|---------------------|
-| Amazon product search API | Jungle Scout ($49-129/mo) | Free (500 calls/mo) |
-| SERP + People Also Ask | SerpAPI ($75/mo) | Free (500 calls/mo) |
+| Amazon product search API | Jungle Scout ($49-129/mo) | Free (250 calls/mo) |
+| SERP + People Also Ask | SerpAPI ($75/mo) | Free (250 calls/mo) |
 | YouTube transcripts | Whisper + scraping | One API call |
 | Fake review detection | Fakespot Premium | Cross-reference YouTube reviews for free |
 | Brand monitoring | Brand24 ($99-299/mo) | Free with BrandSpy agent |
 | SEO content gap analysis | Ahrefs ($99-449/mo) | Free with ContentRadar agent |
 | Reddit lead / GTM tracking | GummySearch ($29-99/mo) | Free with RedditRadar agent |
+| TikTok influencer discovery | Modash ($99-399/mo) | Free with TikFluencer agent |
 
 ## LangChain Tools Reference
 
@@ -155,6 +157,12 @@ from langchain_scavio import (
     ScavioYouTubeTranscript,   # Full timestamped YouTube transcripts
     ScavioRedditSearch,        # Reddit post and comment search
     ScavioRedditPost,          # Reddit post body and comment thread
+    ScavioTikTokProfile,       # TikTok user profile lookup
+    ScavioTikTokUserPosts,     # TikTok user's posted videos
+    ScavioTikTokSearchUsers,   # TikTok user search by keyword
+    ScavioTikTokHashtag,       # TikTok hashtag info and ID lookup
+    ScavioTikTokHashtagVideos, # TikTok videos by hashtag
+    ScavioTikTokVideoComments, # TikTok video comments
 )
 ```
 
@@ -185,7 +193,7 @@ Full reference implementation: [agents/amazon-agent.py](agents/amazon-agent.py)
 ## FAQ
 
 **Is this a free alternative to SerpAPI or ScraperAPI?**
-Yes. Scavio gives you 500 free real-time search credits per month across Google, Amazon, YouTube, and Walmart -- enough to build and ship most personal projects or MVPs.
+Yes. Scavio gives you 250 free real-time search credits per month across Google, Amazon, YouTube, Walmart, Reddit, and TikTok -- enough to build and ship most personal projects or MVPs.
 
 **Does it work with OpenAI GPT-4o, Claude, and other LLMs?**
 Yes. Every agent uses LangChain's `create_agent`, so you can swap in any chat model: OpenAI, Anthropic Claude, Google Gemini, Groq, local Ollama models, etc.
@@ -202,13 +210,16 @@ Scavio is a licensed real-time search provider -- you call Scavio's API, not Ama
 **Can I use this for Reddit marketing or GTM?**
 Yes. `ScavioRedditSearch` and `ScavioRedditPost` let you find live threads where your audience is asking for what you built. The [RedditRadar](agents/reddit-radar.py) agent ranks those threads by engagement potential -- recency, subreddit fit, whether the ask is still open -- so you can spend time engaging instead of hunting. Free alternative to GummySearch and F5Bot.
 
+**Can I find TikTok influencers with this?**
+Yes. The [TikFluencer](agents/tikfluencer.py) agent searches TikTok creators by keyword and hashtag, profiles them, analyzes content fit and engagement quality, and returns a ranked shortlist. Free alternative to Modash, Heepsy, and Upfluence.
+
 ## Contributing
 
 PRs welcome. Guidelines:
 
 - One agent per file, under 200 lines
 - Short docstring with prerequisites and usage
-- Verified against the free tier (500 credits/month)
+- Verified against the free tier (250 credits/month)
 - No emojis, no generated-by-AI attribution
 
 ## Resources
@@ -220,7 +231,7 @@ PRs welcome. Guidelines:
 
 ---
 
-**Keywords:** langchain amazon api, langchain youtube transcript, amazon product search api python, free serpapi alternative, ai shopping agent, langchain agent examples, amazon scraper api free, youtube transcript langchain tool, walmart api langchain, ai agent cookbook, openai amazon agent, gpt-4 shopping assistant, langchain tool calling examples, free amazon product api, ai price comparison agent, fake review detector open source, ai seo content gap finder, brand monitoring open source, retail arbitrage tool open source, people also ask api, google serp api free, langchain reddit api, reddit search api python, free gummysearch alternative, reddit lead generation tool, reddit gtm agent, reddit soft promotion automation.
+**Keywords:** langchain amazon api, langchain youtube transcript, amazon product search api python, free serpapi alternative, ai shopping agent, langchain agent examples, amazon scraper api free, youtube transcript langchain tool, walmart api langchain, ai agent cookbook, openai amazon agent, gpt-4 shopping assistant, langchain tool calling examples, free amazon product api, ai price comparison agent, fake review detector open source, ai seo content gap finder, brand monitoring open source, retail arbitrage tool open source, people also ask api, google serp api free, langchain reddit api, reddit search api python, free gummysearch alternative, reddit lead generation tool, reddit gtm agent, reddit soft promotion automation, tiktok influencer finder, tiktok api langchain, tiktok creator search api, influencer discovery agent, tiktok marketing tool open source, free tiktok analytics api.
 
 Powered by **[Scavio](https://scavio.dev)** -- the real-time search API for AI agents.
 

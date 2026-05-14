@@ -1,21 +1,24 @@
 """
-A minimal LangChain agent that researches Amazon products.
+AmazonScout: LangChain agent for Amazon product research and recommendations.
 
-Give it a product query in natural language. It decides when to search
-Amazon, when to pull full product details by ASIN, and returns a buy
-recommendation grounded in real listings.
+A free alternative to Jungle Scout and Helium 10 for product research.
+Uses the Scavio Amazon product search API to find real-time listings,
+compare prices, ratings, and reviews, then returns a grounded buy
+recommendation. No scraping, no browser automation, no Selenium.
+
+Built with LangChain create_agent, OpenAI tool calling, and langchain-scavio.
 
 Prerequisites:
   pip install langchain langchain-openai langchain-scavio python-dotenv
 
-  Get a free Scavio API key (500 credits/month, no credit card):
+  Get a free Scavio API key (250 credits/month, no credit card):
     https://dashboard.scavio.dev
 
   export SCAVIO_API_KEY="sk_..."
   export OPENAI_API_KEY="sk-..."
 
 Usage:
-  python amazon-agent.py "best wired earbuds under $50"
+  python agents/amazon-agent.py "best wired earbuds under $50"
 """
 
 import sys

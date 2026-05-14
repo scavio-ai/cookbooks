@@ -1,14 +1,19 @@
 """
-TrendTap: YouTube and Reddit content research for creators.
+TrendTap: AI content idea generator using YouTube, Reddit, and Google trends.
 
-Give it a niche or topic. It finds trending YouTube videos, active Reddit
-discussions, and Google search trends, then outputs ranked content ideas
-with supporting data from each source.
+A free alternative to VidIQ, TubeBuddy, and Exploding Topics for content
+research. Give it a niche or topic and it finds trending YouTube videos,
+active Reddit discussions, and Google People Also Ask questions, then
+outputs ranked content ideas with data from each source. Built for
+YouTubers, bloggers, newsletter writers, and social media managers.
+
+Built with LangChain create_agent, OpenAI tool calling, and langchain-scavio
+YouTube + Reddit + Google search tools.
 
 Prerequisites:
   pip install langchain langchain-openai langchain-scavio python-dotenv
 
-  Get a free Scavio API key (500 credits/month, no credit card):
+  Get a free Scavio API key (250 credits/month, no credit card):
     https://dashboard.scavio.dev
 
   export SCAVIO_API_KEY="sk_..."

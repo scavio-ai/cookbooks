@@ -1,14 +1,18 @@
 """
-BrandPulse: Reddit and Google brand sentiment monitor.
+BrandPulse: AI brand monitoring agent -- free alternative to Brand24 and Mention.
 
-Give it a brand name. It searches Reddit and Google for recent mentions,
-analyzes sentiment, identifies complaints and feature requests, spots
-competitor mentions, and ranks engagement opportunities.
+Tracks brand sentiment across Reddit and Google in real time. Give it a
+brand name and it finds recent mentions, analyzes sentiment, surfaces
+complaints and feature requests, spots competitor mentions, and ranks
+engagement opportunities where the brand can respond.
+
+Built with LangChain create_agent, OpenAI tool calling, and langchain-scavio
+Reddit + Google search tools.
 
 Prerequisites:
   pip install langchain langchain-openai langchain-scavio python-dotenv
 
-  Get a free Scavio API key (500 credits/month, no credit card):
+  Get a free Scavio API key (250 credits/month, no credit card):
     https://dashboard.scavio.dev
 
   export SCAVIO_API_KEY="sk_..."
