@@ -1,12 +1,13 @@
-# Scavio Cookbook: 72 real-world examples for the Scavio search API
+# Scavio Cookbook: 104 real-world examples for the Scavio search API
 
-**72 runnable examples** -- AI agents, notebooks, scripts, and no-code workflows --
-that search **Google, YouTube, Amazon, Walmart, Reddit, TikTok, and Instagram**
-in real time, powered by the [Scavio](https://scavio.dev) search API.
+**104 runnable examples** -- AI agents, notebooks, no-code workflows, and a pure
+scraper for every endpoint -- that search **Google, YouTube, Amazon, Walmart,
+Reddit, TikTok, and Instagram** in real time, powered by the
+[Scavio](https://scavio.dev) search API.
 
 Built across **every way you'd actually use the API**: raw REST, the Python and
-JS/TS SDKs, LangChain, the Vercel AI SDK, CrewAI, Agno, smolagents, Haystack,
-AutoGen, n8n, and MCP.
+JS/TS SDKs, plain `requests` scrapers, LangChain, the Vercel AI SDK, CrewAI,
+Agno, smolagents, Haystack, AutoGen, n8n, and MCP.
 
 [![PyPI](https://img.shields.io/pypi/v/scavio.svg?label=scavio)](https://pypi.org/project/scavio/)
 [![npm](https://img.shields.io/npm/v/scavio.svg?label=scavio)](https://www.npmjs.com/package/scavio)
@@ -26,6 +27,7 @@ AutoGen, n8n, and MCP.
 | Surface | Folder | Examples | Lang |
 |---|---|---|---|
 | Raw REST (curl + jq) | [`recipes/rest`](recipes/rest) | 6 | bash |
+| Pure API scrapers (one per endpoint) | [`recipes/scrapers`](recipes/scrapers) | 32 | Python |
 | Python SDK (no LLM) | [`recipes/python-sdk`](recipes/python-sdk) | 7 | Python |
 | JS/TS SDK (no LLM) | [`recipes/js-sdk`](recipes/js-sdk) | 6 | TypeScript |
 | Vercel AI SDK | [`recipes/vercel-ai`](recipes/vercel-ai) | 4 | TypeScript |
