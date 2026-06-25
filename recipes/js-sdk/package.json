@@ -1,0 +1,23 @@
+{
+  "name": "scavio-js-sdk-recipes",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "No-LLM data recipes built on the scavio JS/TS SDK",
+  "scripts": {
+    "google-news": "tsx google-news-feed.ts",
+    "amazon-webhook": "tsx amazon-price-drop-webhook.ts",
+    "reddit-slack": "tsx reddit-to-slack.ts",
+    "youtube-playlist": "tsx youtube-playlist-builder.ts",
+    "instagram-engagement": "tsx instagram-engagement-rate.ts",
+    "tiktok-scorecard": "tsx tiktok-creator-scorecard.ts"
+  },
+  "dependencies": {
+    "scavio": "^0.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
