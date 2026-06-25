@@ -3,5 +3,5 @@
 # smolagents, haystack, autogen, n8n, mcp) each ship their own requirements.
 langchain>=0.3
 langchain-openai>=0.3
-langchain-scavio>=2.9
+langchain-scavio>=2.10
 python-dotenv>=1.0
