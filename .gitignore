@@ -18,3 +18,9 @@ dist/
 .mcp.json
 posts/
 .ipynb_checkpoints/
+node_modules/
+package-lock.json
+*.db
+*.csv
+.reddit_seen.json
+*_seen_*.txt

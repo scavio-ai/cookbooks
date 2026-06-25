@@ -1,4 +1,7 @@
+# Root deps cover the LangChain agents/ and notebooks/ examples.
+# The recipes/ subfolders (rest, python-sdk, js-sdk, vercel-ai, crewai, agno,
+# smolagents, haystack, autogen, n8n, mcp) each ship their own requirements.
 langchain>=0.3
 langchain-openai>=0.3
-langchain-scavio>=2.7
+langchain-scavio>=2.9
 python-dotenv>=1.0
