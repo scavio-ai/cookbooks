@@ -34,8 +34,12 @@ load_dotenv(override=True)
 async def main() -> None:
     topic = " ".join(sys.argv[1:]) or "ai coding agents"
 
+    # YouTube search returns large raw payloads (thumbnail variants, rich
+    # metadata); a handful of results can exceed gpt-4o-mini's 128k context once
+    # they accumulate across tool-call rounds. Keep YouTube results small so the
+    # transcript stays within context; Reddit payloads are lighter.
     tools = [
-        create_youtube_search_tool(max_results=5),
+        create_youtube_search_tool(max_results=2),
         create_reddit_search_tool(max_results=5),
     ]
 
@@ -55,12 +59,12 @@ async def main() -> None:
         reflect_on_tool_use=True,
         max_tool_iterations=6,
         system_message=(
-            "You are a trend analyst. Use YouTube search (sort by date and "
-            "recent upload windows) and Reddit search (sort by new and top) to "
-            "gauge a topic's momentum. Judge whether interest is rising, "
-            "flat, or fading, and back the call with specific video titles, "
-            "view counts, subreddits, and post titles you actually found. "
-            "End with a one-line verdict: RISING, STEADY, or COOLING."
+            "You are a trend analyst. Use YouTube search (sort_by 'view_count' "
+            "or 'relevance') and Reddit search (sort by new and top) to gauge a "
+            "topic's momentum. Judge whether interest is rising, flat, or "
+            "fading, and back the call with specific video titles, view counts, "
+            "subreddits, and post titles you actually found. End with a "
+            "one-line verdict: RISING, STEADY, or COOLING."
         ),
     )
 

@@ -33,10 +33,12 @@ MODEL = "gpt-4o-mini"
 
 
 def build_crew(brief: str) -> Crew:
-    tiktok_users_tool = ScavioTikTokSearchUsersTool()
-    tiktok_videos_tool = ScavioTikTokSearchVideosTool()
-    instagram_users_tool = ScavioInstagramSearchUsersTool()
-    instagram_hashtags_tool = ScavioInstagramSearchHashtagsTool()
+    # Social search payloads are large; cap results so several calls fit
+    # comfortably inside the model's context window.
+    tiktok_users_tool = ScavioTikTokSearchUsersTool(max_results=3)
+    tiktok_videos_tool = ScavioTikTokSearchVideosTool(max_results=3)
+    instagram_users_tool = ScavioInstagramSearchUsersTool(max_results=3)
+    instagram_hashtags_tool = ScavioInstagramSearchHashtagsTool(max_results=3)
 
     tiktok_scout = Agent(
         role="TikTok Creator Scout",
@@ -84,20 +86,24 @@ def build_crew(brief: str) -> Crew:
     tiktok_task = Task(
         description=(
             f"Search TikTok for creators and trending videos matching the brief: "
-            f"'{brief}'. Use a few keyword variations. Return candidate creators "
-            "with handles and a note on the content they make."
+            f"'{brief}'. Make at most one creator search and one video search "
+            "using a single focused keyword. From the results, list up to 5 "
+            "candidate creators with handles and a short note on the content "
+            "they make. Do not repeat searches."
         ),
-        expected_output="A list of TikTok creators (handles + content notes) and example trending videos.",
+        expected_output="A short list of TikTok creators (handles + content notes) and a few example trending videos.",
         agent=tiktok_scout,
     )
 
     instagram_task = Task(
         description=(
             f"Search Instagram for creators and relevant hashtags for the brief: "
-            f"'{brief}'. Return candidate creators with handles and the hashtags "
-            "their niche uses."
+            f"'{brief}'. Make at most one user search and one hashtag search "
+            "using a single focused keyword. List up to 5 candidate creators "
+            "with handles plus the hashtags their niche uses. Do not repeat "
+            "searches."
         ),
-        expected_output="A list of Instagram creators (handles + notes) and relevant active hashtags.",
+        expected_output="A short list of Instagram creators (handles + notes) and relevant active hashtags.",
         agent=instagram_scout,
     )
 

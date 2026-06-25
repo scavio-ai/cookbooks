@@ -325,8 +325,14 @@ class ScavioTools(Toolkit):
         subtitles: Optional[bool] = None,
         creative_commons: Optional[bool] = None,
         live: Optional[bool] = None,
+        max_results: int = 8,
     ) -> str:
         """Search YouTube for videos matching a query.
+
+        Returns a compact list of videos (title, channel, URL, views, length,
+        publish time, and a short description snippet). The raw YouTube payload is
+        very large, so it is trimmed to the most useful fields to keep agent
+        context manageable.
 
         Args:
             query (str): The search query.
@@ -338,22 +344,69 @@ class ScavioTools(Toolkit):
             subtitles (Optional[bool]): Restrict to videos with subtitles when True.
             creative_commons (Optional[bool]): Restrict to Creative Commons videos when True.
             live (Optional[bool]): Restrict to live videos when True.
+            max_results (int): Maximum number of videos to return. Defaults to 8.
 
         Returns:
-            str: JSON string of matching videos.
+            str: JSON string of matching videos (compact fields).
         """
-        return self._call(
-            self.client.youtube.search,
-            query,
-            upload_date=upload_date,
-            type=type,
-            duration=duration,
-            sort_by=sort_by,
-            hd=hd,
-            subtitles=subtitles,
-            creative_commons=creative_commons,
-            live=live,
-        )
+        try:
+            raw = self.client.youtube.search(
+                query,
+                upload_date=upload_date,
+                type=type,
+                duration=duration,
+                sort_by=sort_by,
+                hd=hd,
+                subtitles=subtitles,
+                creative_commons=creative_commons,
+                live=live,
+            )
+            return json.dumps(self._compact_youtube(raw, max_results))
+        except Exception as e:
+            log_error(f"Scavio request failed: {e}")
+            return json.dumps({"error": str(e)})
+
+    @staticmethod
+    def _compact_youtube(raw: Any, max_results: int) -> dict:
+        """Trim a raw YouTube search payload to a small set of useful fields."""
+
+        def _runs_text(node: Any) -> Optional[str]:
+            if isinstance(node, dict):
+                if "simpleText" in node:
+                    return node["simpleText"]
+                runs = node.get("runs")
+                if isinstance(runs, list):
+                    return "".join(r.get("text", "") for r in runs if isinstance(r, dict))
+            return None
+
+        data = raw.get("data") if isinstance(raw, dict) else None
+        results = data.get("results", []) if isinstance(data, dict) else []
+        videos = []
+        for v in results:
+            if not isinstance(v, dict):
+                continue
+            video_id = v.get("videoId")
+            if not video_id:
+                continue
+            snippets = v.get("detailedMetadataSnippets") or []
+            snippet_text = None
+            if snippets and isinstance(snippets[0], dict):
+                snippet_text = _runs_text(snippets[0].get("snippetText"))
+            videos.append(
+                {
+                    "video_id": video_id,
+                    "url": f"https://www.youtube.com/watch?v={video_id}",
+                    "title": _runs_text(v.get("title")),
+                    "channel": _runs_text(v.get("longBylineText") or v.get("ownerText")),
+                    "published": _runs_text(v.get("publishedTimeText")),
+                    "length": (v.get("lengthText") or {}).get("simpleText"),
+                    "views": _runs_text(v.get("viewCountText")),
+                    "description": snippet_text,
+                }
+            )
+            if len(videos) >= max_results:
+                break
+        return {"query": (data or {}).get("search") if isinstance(data, dict) else query, "results": videos}
 
     def youtube_metadata(self, video_id: str) -> str:
         """Get structured metadata for a single YouTube video.
@@ -480,8 +533,13 @@ class ScavioTools(Toolkit):
         count: Optional[int] = None,
         sort_type: Optional[str] = None,
         publish_time: Optional[str] = None,
+        max_results: int = 8,
     ) -> str:
         """Search TikTok for videos matching a keyword.
+
+        Returns a compact list of videos (description, author, URL, and engagement
+        stats). The raw TikTok payload is very large, so it is trimmed to the most
+        useful fields to keep agent context manageable.
 
         Args:
             keyword (str): The search keyword.
@@ -489,18 +547,53 @@ class ScavioTools(Toolkit):
             count (Optional[int]): Number of videos to return.
             sort_type (Optional[str]): Sort order for results.
             publish_time (Optional[str]): Filter by publish time window.
+            max_results (int): Maximum number of videos to return. Defaults to 8.
 
         Returns:
-            str: JSON string of matching videos.
+            str: JSON string of matching videos (compact fields).
         """
-        return self._call(
-            self.client.tiktok.search_videos,
-            keyword,
-            cursor=cursor,
-            count=count,
-            sort_type=sort_type,
-            publish_time=publish_time,
-        )
+        try:
+            raw = self.client.tiktok.search_videos(
+                keyword,
+                cursor=cursor,
+                count=count,
+                sort_type=sort_type,
+                publish_time=publish_time,
+            )
+            return json.dumps(self._compact_tiktok(raw, max_results))
+        except Exception as e:
+            log_error(f"Scavio request failed: {e}")
+            return json.dumps({"error": str(e)})
+
+    @staticmethod
+    def _compact_tiktok(raw: Any, max_results: int) -> dict:
+        """Trim a raw TikTok video search payload to a small set of useful fields."""
+        data = raw.get("data") if isinstance(raw, dict) else None
+        items = data.get("search_item_list", []) if isinstance(data, dict) else []
+        if not items and isinstance(data, dict):
+            items = [{"aweme_info": a} for a in data.get("aweme_list", [])]
+        videos = []
+        for item in items:
+            aweme = item.get("aweme_info") if isinstance(item, dict) else None
+            if not isinstance(aweme, dict):
+                continue
+            author = aweme.get("author") or {}
+            stats = aweme.get("statistics") or {}
+            videos.append(
+                {
+                    "description": aweme.get("desc"),
+                    "author": author.get("nickname"),
+                    "username": author.get("unique_id"),
+                    "url": aweme.get("share_url", "").split("?")[0] or None,
+                    "likes": stats.get("digg_count"),
+                    "comments": stats.get("comment_count"),
+                    "plays": stats.get("play_count"),
+                    "shares": stats.get("share_count"),
+                }
+            )
+            if len(videos) >= max_results:
+                break
+        return {"results": videos}
 
     def tiktok_search_users(self, keyword: str, cursor: Optional[str] = None, count: Optional[int] = None) -> str:
         """Search TikTok for users matching a keyword.

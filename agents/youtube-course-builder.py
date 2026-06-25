@@ -2,15 +2,16 @@
 YouTubeCourseBuilder: turn YouTube into a structured free course.
 
 A free alternative to $50-$2,000 online courses. Give it a skill. It searches
-YouTube for the best tutorials, ranks them by real engagement (views, likes,
-comments via metadata), and assembles an ordered curriculum: modules from
-beginner to advanced, each with a hand-picked video and why it belongs.
+YouTube across beginner-to-advanced angles, ranks the results by view count,
+and assembles an ordered curriculum: modules from fundamentals to application,
+each with a hand-picked video and why it belongs.
 
-Built with LangChain create_agent, OpenAI tool calling, and langchain-scavio
-YouTube tools.
+This recipe uses the Scavio Python SDK to search and trim, then an LLM to plan,
+because raw YouTube payloads are large -- fetch, keep only the useful fields,
+then reason. A clean pattern for any high-volume source.
 
 Prerequisites:
-  pip install langchain langchain-openai "langchain-scavio>=2.9" python-dotenv
+  pip install scavio langchain-openai python-dotenv
   export SCAVIO_API_KEY="sk_..."   # https://dashboard.scavio.dev
   export OPENAI_API_KEY="sk-..."
 
@@ -21,54 +22,83 @@ Usage:
 import sys
 
 from dotenv import load_dotenv
-from langchain.agents import create_agent
 from langchain_openai import ChatOpenAI
-from langchain_scavio import ScavioYouTubeMetadata, ScavioYouTubeSearch
+from scavio import ScavioClient
 
 load_dotenv(override=True)
 
 
-SYSTEM_PROMPT = """You are YouTubeCourseBuilder. Given a skill, build a free,
-ordered video curriculum.
+def _text(node) -> str:
+    """YouTube fields arrive as strings or renderer objects with runs."""
+    if isinstance(node, str):
+        return node
+    if isinstance(node, dict):
+        if "simpleText" in node:
+            return node["simpleText"]
+        runs = node.get("runs")
+        if runs:
+            return "".join(r.get("text", "") for r in runs)
+    return ""
 
-## Workflow
 
-1. Generate 3-4 search angles spanning beginner -> intermediate -> advanced
-   (e.g. "<skill> for beginners", "<skill> full course", "<skill> projects").
-2. Call ScavioYouTubeSearch for each angle. Collect candidate videos.
-3. For the most promising 5-8 videos, call ScavioYouTubeMetadata to get real
-   view_count, like_count, and duration. Prefer high-engagement, substantial
-   videos; drop clickbait and very short clips for core modules.
-4. ANSWER as a curriculum:
+def gather(skill: str) -> list:
+    client = ScavioClient()
+    angles = [
+        f"{skill} for beginners",
+        f"{skill} full course",
+        f"{skill} projects",
+    ]
+    seen, videos = set(), []
+    for angle in angles:
+        results = (
+            client.youtube.search(angle, sort_by="view_count").get("data") or {}
+        ).get("results") or []
+        for r in results[:6]:
+            vid = r.get("videoId")
+            if not vid or vid in seen:
+                continue
+            seen.add(vid)
+            videos.append(
+                {
+                    "id": vid,
+                    "title": _text(r.get("title")),
+                    "channel": _text(r.get("ownerText")) or _text(r.get("longBylineText")),
+                    "views": _text(r.get("viewCountText")),
+                    "length": _text(r.get("lengthText")),
+                    "url": f"https://youtube.com/watch?v={vid}",
+                }
+            )
+    return videos
 
-   # Course: <skill>
 
-   ## Module 1 -- <theme>
-   <video title> -- <channel>  (<views> views, <duration>)
-   https://youtube.com/watch?v=<id>
-   Why: <one line>
+PROMPT = """You are YouTubeCourseBuilder. From the YouTube videos below (real
+titles, channels, view counts, lengths, and URLs), build a free, ordered
+curriculum for learning "{skill}".
 
-   ...3-6 modules, ordered from fundamentals to application.
+Output:
+  # Course: {skill}
+  ## Module N -- <theme>
+  <title> -- <channel>  (<views>, <length>)
+  <url>
+  Why: <one line>
 
-   End with a one-line "suggested pace".
+Use 4-6 modules, ordered fundamentals -> application. Prefer substantial,
+high-view videos; skip clickbait and very short clips for core modules. Use
+only the videos provided -- never invent titles, channels, or URLs. End with a
+one-line suggested pace. Keep it under 450 words.
 
-## Rules
-- Only use videos returned by the tools, with their real IDs and metrics.
-- Never invent titles, channels, view counts, or video IDs.
-- Keep the answer under 450 words.
+VIDEOS:
+{videos}
 """
 
 
-def build_agent():
-    model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
-    tools = [ScavioYouTubeSearch(max_results=8), ScavioYouTubeMetadata()]
-    return create_agent(model, tools=tools, system_prompt=SYSTEM_PROMPT)
-
-
 def run(skill: str) -> str:
-    agent = build_agent()
-    result = agent.invoke({"messages": [{"role": "user", "content": skill}]})
-    return result["messages"][-1].content
+    import json
+
+    videos = gather(skill)
+    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+    prompt = PROMPT.format(skill=skill, videos=json.dumps(videos, indent=1))
+    return llm.invoke(prompt).content
 
 
 if __name__ == "__main__":
