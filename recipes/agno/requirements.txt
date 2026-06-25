@@ -1,0 +1,4 @@
+agno
+scavio
+openai
+python-dotenv

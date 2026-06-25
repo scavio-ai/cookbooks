@@ -1,0 +1,7 @@
+# Note: the YouTube tool fix ships in autogen-scavio 0.2.2; until that is on
+# PyPI, the YouTube examples run fully only against the local build. The
+# Amazon/Walmart/Reddit/Google tools work on 0.2.1.
+autogen-scavio>=0.2.1
+autogen-agentchat
+autogen-ext[openai]
+python-dotenv

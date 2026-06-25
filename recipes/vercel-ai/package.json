@@ -1,0 +1,23 @@
+{
+  "name": "scavio-vercel-ai-recipes",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Vercel AI SDK agents powered by Scavio search tools",
+  "scripts": {
+    "research": "tsx research-stream.ts",
+    "reddit-sentiment": "tsx reddit-sentiment-tool.ts",
+    "instagram-vet": "tsx instagram-influencer-vet.ts"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^3.0.0",
+    "@scavio/ai-sdk": "^0.2.1",
+    "ai": "^6.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "name": "Scavio - Reddit Mentions to Slack",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            { "field": "hours", "hoursInterval": 1 }
+          ]
+        }
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000001",
+      "name": "Every hour",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "resource": "reddit",
+        "operation": "search",
+        "query": "serpapi alternative",
+        "additionalOptions": {
+          "sort": "new",
+          "type": "posts"
+        }
+      },
+      "id": "a1b2c3d4-0002-0002-0002-000000000002",
+      "name": "Scavio Reddit Search",
+      "type": "n8n-nodes-scavio.scavio",
+      "typeVersion": 1,
+      "position": [480, 300],
+      "credentials": {
+        "scavioApi": { "id": "1", "name": "Scavio account" }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToSplitOut": "data.posts",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0003-0003-0003-000000000003",
+      "name": "Split Posts",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [700, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://hooks.slack.com/services/REPLACE/WITH/YOUR_WEBHOOK",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"text\": \"New Reddit thread in r/\" + $json.subreddit + \": \" + $json.title + \"\\n\" + $json.url } }}",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0004-0004-0004-000000000004",
+      "name": "Post to Slack",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [920, 300]
+    }
+  ],
+  "connections": {
+    "Every hour": {
+      "main": [[{ "node": "Scavio Reddit Search", "type": "main", "index": 0 }]]
+    },
+    "Scavio Reddit Search": {
+      "main": [[{ "node": "Split Posts", "type": "main", "index": 0 }]]
+    },
+    "Split Posts": {
+      "main": [[{ "node": "Post to Slack", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "description": "Polls Reddit every hour for a keyword via the Scavio node and posts new threads to a Slack incoming webhook. Set the Slack webhook URL in the HTTP Request node and add your Scavio API credential. A free F5Bot + Zapier alternative."
+  }
+}

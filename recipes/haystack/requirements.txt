@@ -1,0 +1,4 @@
+scavio-haystack
+haystack-ai
+openai
+python-dotenv

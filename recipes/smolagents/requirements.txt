@@ -1,0 +1,4 @@
+smolagents
+scavio
+openai
+python-dotenv
