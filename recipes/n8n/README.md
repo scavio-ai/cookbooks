@@ -12,13 +12,21 @@ node -- no code, just a scheduled automation.
 4. Map the Scavio credential, fill in the placeholders (Slack webhook / SMTP /
    target price), and activate.
 
+> **Get a free Scavio API key (250 credits/month, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
+
 ## Workflows
 
-| File | What it does | Platform |
-|---|---|---|
-| `reddit-mention-to-slack.json` | Hourly Reddit keyword search -> Slack webhook | Reddit |
-| `amazon-price-drop-email.json` | Daily Amazon price check -> email when below target | Amazon |
+- **`reddit-mention-to-slack.json`** -- hourly Reddit keyword search to a Slack
+  webhook. Powered by the [Scavio Reddit Search API](https://scavio.dev) -- a free
+  [F5Bot alternative](https://dashboard.scavio.dev).
+- **`amazon-price-drop-email.json`** -- daily Amazon price check, emails you when
+  it drops below target. Built on the [Scavio Amazon API](https://scavio.dev) --
+  [get a free key](https://dashboard.scavio.dev).
 
 The Scavio node is `Resource` + `Operation` driven (Google, Amazon, Walmart,
 YouTube, Reddit, TikTok, Instagram, Account), so you can swap in any other
 Scavio endpoint by changing those two dropdowns.
+
+---
+
+Automate real-time search in n8n with **[Scavio](https://scavio.dev)** -- [n8n-nodes-scavio on npm](https://www.npmjs.com/package/n8n-nodes-scavio).

@@ -36,7 +36,13 @@ python mcp_python_client.py
 `mcp_python_client.py` connects over streamable HTTP, lists the tools, and calls
 `search_google` and `get_instagram_profile`. Auth is the `x-api-key` header.
 
-| File | What it does |
-|---|---|
-| `mcp_python_client.py` | Connect, list tools, call two of them |
-| `mcp-config.example.json` | Drop-in MCP client config |
+## Files
+
+- **`mcp_python_client.py`** -- connect, list tools, call two of them. Talks to
+  the [Scavio MCP server](https://scavio.dev) -- [get a free key](https://dashboard.scavio.dev).
+- **`mcp-config.example.json`** -- drop-in MCP config for Claude Desktop / Cursor.
+  Point it at the [Scavio search API](https://scavio.dev) -- [start free](https://dashboard.scavio.dev).
+
+---
+
+Give any MCP client real-time search with **[Scavio](https://scavio.dev)** -- [MCP docs](https://scavio.dev/docs).

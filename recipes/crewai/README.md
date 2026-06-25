@@ -2,9 +2,11 @@
 
 Multi-agent crews built on [CrewAI](https://github.com/crewAIInc/crewAI) and
 the [`crewai-scavio`](https://pypi.org/project/crewai-scavio/) tools. Each
-crew uses the [Scavio Search API](https://scavio.dev/docs/introduction) for
-live web, retail, and social data through a single API key -- no scraping,
-proxies, or per-source keys. Every script is a self-contained CLI.
+crew uses the [Scavio API](https://scavio.dev) for live web, retail, and social
+data through a single API key -- no scraping, proxies, or per-source keys.
+Every script is a self-contained CLI.
+
+> **Get a free Scavio API key (250 credits/month, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
 
 ## Setup
 
@@ -24,12 +26,18 @@ picked up automatically.
 
 ## Recipes
 
-| Script | What it does | Scavio tools |
-|---|---|---|
-| `market-research-crew.py` | 3-agent crew that produces a market-research brief for a niche | Google Search, Reddit Search |
-| `product-launch-crew.py` | Competitive crew that analyzes rivals before a product launch | Amazon Search, Walmart Search, YouTube Search |
-| `influencer-campaign-crew.py` | Crew that builds a TikTok + Instagram creator shortlist for a campaign | TikTok Search (users/videos), Instagram Search (users/hashtags) |
-| `seo-content-crew.py` | Crew that mines the SERP and writes an SEO content plan for a seed keyword | Google Search |
+- **`market-research-crew.py`** -- 3-agent crew that produces a market-research
+  brief for a niche. Powered by the [Scavio Google + Reddit APIs](https://scavio.dev) --
+  [get a free key](https://dashboard.scavio.dev).
+- **`product-launch-crew.py`** -- competitive crew that analyzes rivals before a
+  launch. Built on the [Scavio Amazon + Walmart + YouTube APIs](https://scavio.dev) --
+  [start free](https://dashboard.scavio.dev).
+- **`influencer-campaign-crew.py`** -- crew that builds a TikTok + Instagram
+  creator shortlist for a campaign. Uses the [Scavio TikTok + Instagram APIs](https://scavio.dev) --
+  a free [Modash alternative](https://dashboard.scavio.dev).
+- **`seo-content-crew.py`** -- crew that mines the SERP and writes an SEO content
+  plan. Built with the [Scavio Google SERP API](https://scavio.dev) --
+  a free [Ahrefs alternative](https://dashboard.scavio.dev).
 
 ## Run
 
@@ -41,4 +49,8 @@ python seo-content-crew.py "home espresso machines"
 ```
 
 Each script takes its topic as command-line arguments and prints the final
-crew output. Swap the `MODEL` constant in any file to use a different LLM.
+crew output. Swap the model in any file to use a different LLM.
+
+---
+
+Build multi-agent crews with real-time search via **[Scavio](https://scavio.dev)** -- [crewai-scavio on PyPI](https://pypi.org/project/crewai-scavio/).
