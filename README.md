@@ -14,7 +14,7 @@ Agno, smolagents, Haystack, AutoGen, n8n, and MCP.
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Scavio](https://img.shields.io/badge/powered%20by-Scavio-ff4d00.svg)](https://scavio.dev)
 
-> **250 free API credits every month. No credit card required.** [Get your free key in 30 seconds](https://dashboard.scavio.dev)
+> **50 free API credits to start (one-time). No credit card required.** [Get your free key in 30 seconds](https://dashboard.scavio.dev)
 
 ---
 
@@ -176,7 +176,7 @@ header -- see [`recipes/mcp`](recipes/mcp).
 
 | Need | Expensive tool | Scavio |
 |------|----------------|--------|
-| SERP + People Also Ask | SerpAPI ($75/mo) | Free (250 calls/mo) |
+| SERP + People Also Ask | SerpAPI ($75/mo) | Free (50 calls) |
 | Amazon product data | Jungle Scout ($49-129/mo) | One API call |
 | YouTube video metadata | VidIQ/TubeBuddy ($7-49/mo) | One API call |
 | Reddit lead / GTM tracking | GummySearch ($29-99/mo) | `recipes/python-sdk/reddit_alert_watcher.py` |
@@ -210,8 +210,9 @@ await c.tiktok.searchUsers({ keyword: "coffee" });
 ## FAQ
 
 **Is this a free alternative to SerpAPI or ScraperAPI?**
-Yes. 250 free real-time credits/month across Google, Amazon, YouTube, Walmart,
-Reddit, TikTok, and Instagram -- enough for most MVPs and side projects.
+Yes. 50 free real-time credits to start (one-time, no card) across Google,
+Amazon, YouTube, Walmart, Reddit, TikTok, and Instagram -- enough to build and
+test a project. Paid plans add monthly credits when you need more.
 
 **Which frameworks are supported?**
 LangChain, the Vercel AI SDK, CrewAI, Agno, smolagents, Haystack, and AutoGen

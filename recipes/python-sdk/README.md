@@ -4,7 +4,7 @@ Plain data pipelines built on the [`scavio`](https://pypi.org/project/scavio/)
 Python SDK -- no model, no agent framework. Each script is a self-contained
 CLI you can run or schedule.
 
-> **Get a free [Scavio API](https://scavio.dev) key (250 credits/month, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
+> **Get a free [Scavio API](https://scavio.dev) key (50 free credits, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
 
 ## Setup
 
@@ -28,7 +28,7 @@ and so on.
 - **`reddit_alert_watcher.py`** -- alert on new posts, dedupe via JSON state.
   Tap the [Scavio Reddit Search API](https://scavio.dev) -- a free [GummySearch alternative](https://dashboard.scavio.dev).
 - **`youtube_channel_dashboard.py`** -- top videos ranked by real engagement.
-  Runs on the [Scavio YouTube API](https://scavio.dev) -- [free 250 credits/mo](https://dashboard.scavio.dev).
+  Runs on the [Scavio YouTube API](https://scavio.dev) -- [free 50 credits](https://dashboard.scavio.dev).
 - **`instagram_follower_overlap.py`** -- accounts two profiles both follow.
   Built with the [Scavio Instagram API](https://scavio.dev) -- [get your key](https://dashboard.scavio.dev).
 - **`tiktok_hashtag_trend_logger.py`** -- log hashtag reach to SQLite over time.

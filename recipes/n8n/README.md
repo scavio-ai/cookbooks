@@ -12,7 +12,7 @@ node -- no code, just a scheduled automation.
 4. Map the Scavio credential, fill in the placeholders (Slack webhook / SMTP /
    target price), and activate.
 
-> **Get a free Scavio API key (250 credits/month, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
+> **Get a free Scavio API key (50 free credits, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
 
 ## Workflows
 

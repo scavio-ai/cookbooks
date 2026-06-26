@@ -6,7 +6,7 @@ crew uses the [Scavio API](https://scavio.dev) for live web, retail, and social
 data through a single API key -- no scraping, proxies, or per-source keys.
 Every script is a self-contained CLI.
 
-> **Get a free Scavio API key (250 credits/month, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
+> **Get a free Scavio API key (50 free credits, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
 
 ## Setup
 

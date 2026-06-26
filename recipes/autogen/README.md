@@ -5,7 +5,7 @@ unified [Scavio API](https://scavio.dev) (Google, YouTube, Amazon, Walmart,
 Reddit, TikTok, Instagram) as a free, self-hosted alternative to paid
 shopping-research and social-listening tools.
 
-> **Get a free Scavio API key (250 credits/month, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
+> **Get a free Scavio API key (50 free credits, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
 
 These examples use the `autogen-scavio` package, which exposes Scavio endpoints
 as AutoGen `FunctionTool` factories (`create_amazon_search_tool`,

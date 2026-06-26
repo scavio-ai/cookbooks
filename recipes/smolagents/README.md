@@ -5,7 +5,7 @@ give an agent live web search through [Scavio](https://scavio.dev), a unified se
 API for AI agents. Both examples use the Google web search endpoint as a free,
 self-hosted alternative to paid web-research tools.
 
-> **Get a free Scavio API key (250 credits/month, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
+> **Get a free Scavio API key (50 free credits, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
 
 ## Examples
 

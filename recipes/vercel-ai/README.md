@@ -4,7 +4,7 @@ Tool-calling agents built with the [Vercel AI SDK](https://ai-sdk.dev) and
 [`@scavio/ai-sdk`](https://www.npmjs.com/package/@scavio/ai-sdk), which wraps
 the [Scavio API](https://scavio.dev) as ready-made AI SDK tools.
 
-> **Get a free Scavio API key (250 credits/month, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
+> **Get a free Scavio API key (50 free credits, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
 
 ## Setup
 

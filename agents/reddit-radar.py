@@ -17,7 +17,7 @@ Reddit search tools.
 Prerequisites:
   pip install langchain langchain-openai langchain-scavio python-dotenv
 
-  Get a free Scavio API key (250 credits/month, no credit card):
+  Get a free Scavio API key (50 free credits, no credit card):
     https://dashboard.scavio.dev
 
   export SCAVIO_API_KEY="sk_..."
@@ -126,7 +126,7 @@ def run(brief: str) -> str:
 
 DEFAULT_BRIEF = (
     "Scavio is a real-time search API for AI agents -- a free alternative "
-    "to SerpAPI with 250 credits/month. Find threads where people ask for "
+    "to SerpAPI with 50 free credits (one-time). Find threads where people ask for "
     "SerpAPI alternatives, Amazon product APIs, or LangChain search tools."
 )
 

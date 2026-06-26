@@ -4,7 +4,7 @@ No SDK, no LLM -- just `curl` against the [Scavio API](https://scavio.dev) and
 `jq` to reshape the JSON. The shortest path to seeing the API work, and easy to
 port to any language or drop in cron.
 
-> **Get a free Scavio API key (250 credits/month, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
+> **Get a free Scavio API key (50 free credits, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
 
 ## Setup
 
@@ -25,7 +25,7 @@ All endpoints are `POST https://api.scavio.dev/api/v1/...` with
 - **`reddit-keyword-firehose.sh`** -- poll new posts, dedupe seen ids (cron).
   Tap the [Scavio Reddit Search API](https://scavio.dev) -- [grab a key](https://dashboard.scavio.dev).
 - **`youtube-search-to-metadata.sh`** -- search to full video metadata.
-  Runs on the [Scavio YouTube Data API](https://scavio.dev) -- [free 250 credits/mo](https://dashboard.scavio.dev).
+  Runs on the [Scavio YouTube Data API](https://scavio.dev) -- [free 50 credits](https://dashboard.scavio.dev).
 - **`instagram-profile-card.sh`** -- public profile to a scouting card.
   Built with the [Scavio Instagram API](https://scavio.dev) -- [get your key](https://dashboard.scavio.dev).
 - **`tiktok-hashtag-to-csv.sh`** -- hashtag to CSV of top videos.

@@ -5,7 +5,7 @@
 TikTok, Instagram) as a free, self-hosted alternative to paid
 search/research/social-listening tools.
 
-> **Get a free Scavio API key (250 credits/month, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
+> **Get a free Scavio API key (50 free credits, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
 
 ## Setup
 

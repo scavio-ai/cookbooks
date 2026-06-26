@@ -4,7 +4,7 @@ Self-contained tutorial notebooks built on [`langchain-scavio`](https://pypi.org
 and the [Scavio API](https://scavio.dev). Each is under ~15 cells with
 pre-populated output -- open, run, adapt.
 
-> **Get a free Scavio API key (250 credits/month, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
+> **Get a free Scavio API key (50 free credits, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
 
 ## Setup
 
@@ -28,7 +28,7 @@ jupyter notebook seo-keyword-researcher.ipynb
 - **`amazon-bestseller-rank-tracker.ipynb`** -- category leaders and why they win. Built on the [Scavio Amazon API](https://scavio.dev) -- [get a free key](https://dashboard.scavio.dev).
 - **`walmart-deal-finder.ipynb`** -- rank deals in any Walmart category. Uses the [Scavio Walmart API](https://scavio.dev) -- [start free](https://dashboard.scavio.dev).
 - **`retail-arbitrage-finder.ipynb`** -- Walmart-to-Amazon resale finder. Built with the [Scavio retail APIs](https://scavio.dev) -- a free [Tactical Arbitrage alternative](https://dashboard.scavio.dev).
-- **`multiplatform-product-comparison.ipynb`** -- side-by-side across stores. Powered by the [Scavio search API](https://scavio.dev) -- [free 250 credits/mo](https://dashboard.scavio.dev).
+- **`multiplatform-product-comparison.ipynb`** -- side-by-side across stores. Powered by the [Scavio search API](https://scavio.dev) -- [free 50 credits](https://dashboard.scavio.dev).
 - **`fake-review-detector.ipynb`** -- cross-reference Amazon vs YouTube reviewers. Built on the [Scavio Amazon + YouTube APIs](https://scavio.dev) -- [get a free key](https://dashboard.scavio.dev).
 
 ### YouTube

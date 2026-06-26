@@ -6,7 +6,7 @@ alternative to paid web-search and answer engines (Tavily, Exa, SerpAPI). The
 [`scavio-haystack`](https://pypi.org/project/scavio-haystack/) package ships a
 `ScavioWebSearch` component returning Haystack `Document`s plus source links.
 
-> **Get a free Scavio API key (250 credits/month, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
+> **Get a free Scavio API key (50 free credits, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
 
 ## Setup
 

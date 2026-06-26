@@ -12,7 +12,7 @@ Amazon + Walmart search tools.
 Prerequisites:
   pip install langchain langchain-openai langchain-scavio python-dotenv
 
-  Get a free Scavio API key (250 credits/month, no credit card):
+  Get a free Scavio API key (50 free credits, no credit card):
     https://dashboard.scavio.dev
 
   export SCAVIO_API_KEY="sk_..."

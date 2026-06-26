@@ -8,7 +8,7 @@ framework -- just `requests`. Returns the raw JSON the API gives back.
 ------------------------------------------------------------------------------
  Powered by Scavio (https://scavio.dev) -- one real-time search API for Google,
  YouTube, Amazon, Walmart, Reddit, TikTok, and Instagram.
- Get a free API key (250 credits/month, no credit card): https://dashboard.scavio.dev
+ Get a free API key (50 free credits, no credit card): https://dashboard.scavio.dev
  Docs: https://scavio.dev/docs
 ------------------------------------------------------------------------------
 

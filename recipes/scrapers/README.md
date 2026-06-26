@@ -5,7 +5,7 @@ endpoint directly with `requests` and print the raw JSON. No SDK, no framework,
 no LLM, no use case -- just scrape and return the data. One script per endpoint
 across all seven platforms.
 
-> **Get a free Scavio API key (250 credits/month, no credit card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
+> **Get a free Scavio API key (50 free credits, no credit card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
 
 ## Setup
 

@@ -12,7 +12,7 @@ Instagram tools.
 Prerequisites:
   pip install langchain langchain-openai "langchain-scavio>=2.9" python-dotenv
 
-  Free Scavio API key (250 credits/month, no card): https://dashboard.scavio.dev
+  Free Scavio API key (50 free credits, no card): https://dashboard.scavio.dev
   export SCAVIO_API_KEY="sk_..."
   export OPENAI_API_KEY="sk-..."
 

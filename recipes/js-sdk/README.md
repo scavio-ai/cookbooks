@@ -3,7 +3,7 @@
 TypeScript data pipelines built on the [`scavio`](https://www.npmjs.com/package/scavio)
 npm SDK. No model, no framework -- just the SDK, run with `tsx`.
 
-> **Get a free [Scavio API](https://scavio.dev) key (250 credits/month, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
+> **Get a free [Scavio API](https://scavio.dev) key (50 free credits, no card): [dashboard.scavio.dev](https://dashboard.scavio.dev)**
 
 ## Setup
 
@@ -27,7 +27,7 @@ The SDK is namespaced and takes options objects:
 - **`reddit-to-slack.ts`** -- new threads to a Slack Block Kit message.
   Tap the [Scavio Reddit Search API](https://scavio.dev) -- [start free](https://dashboard.scavio.dev).
 - **`youtube-playlist-builder.ts`** -- search to a ranked playlist JSON.
-  Runs on the [Scavio YouTube API](https://scavio.dev) -- [free 250 credits/mo](https://dashboard.scavio.dev).
+  Runs on the [Scavio YouTube API](https://scavio.dev) -- [free 50 credits](https://dashboard.scavio.dev).
 - **`instagram-engagement-rate.ts`** -- profile + posts to engagement rate.
   Built with the [Scavio Instagram API](https://scavio.dev) -- a free [HypeAuditor alternative](https://dashboard.scavio.dev).
 - **`tiktok-creator-scorecard.ts`** -- creator search to a ranked scorecard.
