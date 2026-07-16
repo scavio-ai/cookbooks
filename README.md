@@ -52,13 +52,13 @@ environment (free key: https://dashboard.scavio.dev).
 ```bash
 # Raw API -- no install
 export SCAVIO_API_KEY="sk_..."
-curl -s -X POST https://api.scavio.dev/api/v1/google \
+curl -s -X POST https://api.scavio.dev/api/v2/google \
   -H "Authorization: Bearer $SCAVIO_API_KEY" -H "Content-Type: application/json" \
   -d '{"query":"best running shoes 2026"}' | jq .
 
 # Python SDK
 pip install scavio
-python -c "from scavio import ScavioClient; print(ScavioClient().google.search('hello')['results'][0]['title'])"
+python -c "from scavio import ScavioClient; print(ScavioClient().google.search('hello')['organic_results'][0]['title'])"
 
 # JS/TS SDK
 npm install scavio

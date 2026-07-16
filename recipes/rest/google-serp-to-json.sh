@@ -18,14 +18,14 @@ set -euo pipefail
 : "${SCAVIO_API_KEY:?Set SCAVIO_API_KEY (https://dashboard.scavio.dev)}"
 QUERY="${*:-best running shoes 2026}"
 
-curl -sS -X POST https://api.scavio.dev/api/v1/google \
+curl -sS -X POST https://api.scavio.dev/api/v2/google \
   -H "Authorization: Bearer ${SCAVIO_API_KEY}" \
   -H "Content-Type: application/json" \
   -d "$(jq -nc --arg q "$QUERY" '{query:$q}')" \
 | jq '{
-    query: .query,
-    organic: [.results[]? | {position, title, url, snippet: .content, domain}],
-    people_also_ask: [.questions[]? | (.question // .)],
+    query: .search_parameters.q,
+    organic: [.organic_results[]? | {position, title, url: .link, snippet, source}],
+    people_also_ask: [.related_questions[]? | (.question // .)],
     related_searches: [.related_searches[]? | .query],
     credits_used, credits_remaining
   }'
