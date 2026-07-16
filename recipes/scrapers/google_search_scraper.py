@@ -2,7 +2,7 @@
 Google search scraper -- pure Scavio API scraper.
 
 Scrapes Google SERP results -- organic, People Also Ask, related searches, knowledge graph,
-straight from the Scavio API endpoint POST /api/v1/google. No SDK, no
+straight from the Scavio API endpoint POST /api/v2/google. No SDK, no
 framework -- just `requests`. Returns the raw JSON the API gives back.
 
 ------------------------------------------------------------------------------
@@ -26,7 +26,7 @@ import sys
 
 import requests
 
-API_URL = "https://api.scavio.dev/api/v1/google"
+API_URL = "https://api.scavio.dev/api/v2/google"
 
 
 def scrape(query: str) -> dict:
