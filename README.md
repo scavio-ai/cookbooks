@@ -99,7 +99,7 @@ python recipes/python-sdk/youtube_channel_dashboard.py "langchain agents tutoria
 | `amazon_bulk_catalog.py` -- ASIN list to product CSV | Amazon |
 | `walmart_price_logger.py` -- price snapshots to SQLite | Walmart |
 | `reddit_alert_watcher.py` -- alert on new posts (JSON state) | Reddit |
-| `youtube_channel_dashboard.py` -- top videos ranked by engagement | YouTube |
+| `youtube_channel_dashboard.py` -- a channel's top videos ranked by views | YouTube |
 | `instagram_follower_overlap.py` -- accounts two profiles both follow | Instagram |
 | `tiktok_hashtag_trend_logger.py` -- log hashtag reach to SQLite | TikTok |
 

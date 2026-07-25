@@ -22,18 +22,17 @@ const topic = (Number.isNaN(last) ? args : args.slice(0, -1)).join(" ") || "lear
 const client = new Scavio({ apiKey: process.env.SCAVIO_API_KEY });
 const res: any = await client.youtube.search({ query: topic, sort_by: "view_count", type: "video" });
 
-const runs = (t: any) => (typeof t === "string" ? t : t?.runs?.[0]?.text ?? t?.simpleText ?? "");
-
 const videos = (res.data?.results ?? [])
-  .filter((v: any) => v.videoId)
+  .filter((v: any) => v.video_id)
   .slice(0, limit)
   .map((v: any, i: number) => ({
     position: i + 1,
-    video_id: v.videoId,
-    title: runs(v.title),
-    channel: runs(v.ownerText) || runs(v.longBylineText),
-    length: v.lengthText?.simpleText ?? runs(v.lengthText),
-    url: `https://www.youtube.com/watch?v=${v.videoId}`,
+    video_id: v.video_id,
+    title: v.title,
+    channel: v.channel?.name ?? "",
+    views: v.view_count ?? null,
+    length: v.duration_text ?? "",
+    url: v.url ?? `https://www.youtube.com/watch?v=${v.video_id}`,
   }));
 
 const playlist = {

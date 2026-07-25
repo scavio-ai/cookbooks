@@ -1,9 +1,10 @@
 """
 YouTube video metadata scraper -- pure Scavio API scraper.
 
-Scrapes full metadata for a YouTube video -- views, likes, comments, duration, channel,
-straight from the Scavio API endpoint POST /api/v1/youtube/metadata. No SDK, no
-framework -- just `requests`. Returns the raw JSON the API gives back.
+Scrapes full metadata for a YouTube video -- title, channel, views, duration,
+description, keywords, chapters, and captions -- straight from the Scavio API
+endpoint POST /api/v1/youtube/video. No SDK, no framework -- just `requests`.
+Returns the raw JSON the API gives back.
 
 ------------------------------------------------------------------------------
  Powered by Scavio (https://scavio.dev) -- one real-time search API for Google,
@@ -26,7 +27,7 @@ import sys
 
 import requests
 
-API_URL = "https://api.scavio.dev/api/v1/youtube/metadata"
+API_URL = "https://api.scavio.dev/api/v1/youtube/video"
 
 
 def scrape(video_id: str) -> dict:

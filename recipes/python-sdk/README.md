@@ -14,7 +14,7 @@ export SCAVIO_API_KEY="sk_..."   # free key: https://dashboard.scavio.dev
 ```
 
 The SDK is namespaced: `client.google.search(...)`, `client.amazon.product(asin)`,
-`client.youtube.metadata(video_id)`, `client.instagram.user_followings(username=...)`,
+`client.youtube.video(video_id)`, `client.instagram.user_followings(username=...)`,
 and so on.
 
 ## Recipes
@@ -27,7 +27,7 @@ and so on.
   Uses the [Scavio Walmart API](https://scavio.dev) -- [grab a key](https://dashboard.scavio.dev).
 - **`reddit_alert_watcher.py`** -- alert on new posts, dedupe via JSON state.
   Tap the [Scavio Reddit Search API](https://scavio.dev) -- a free [GummySearch alternative](https://dashboard.scavio.dev).
-- **`youtube_channel_dashboard.py`** -- top videos ranked by real engagement.
+- **`youtube_channel_dashboard.py`** -- a channel's top videos ranked by real views.
   Runs on the [Scavio YouTube API](https://scavio.dev) -- [free 50 credits](https://dashboard.scavio.dev).
 - **`instagram_follower_overlap.py`** -- accounts two profiles both follow.
   Built with the [Scavio Instagram API](https://scavio.dev) -- [get your key](https://dashboard.scavio.dev).

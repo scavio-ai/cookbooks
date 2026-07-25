@@ -28,19 +28,6 @@ from scavio import ScavioClient
 load_dotenv(override=True)
 
 
-def _text(node) -> str:
-    """YouTube fields arrive as strings or renderer objects with runs."""
-    if isinstance(node, str):
-        return node
-    if isinstance(node, dict):
-        if "simpleText" in node:
-            return node["simpleText"]
-        runs = node.get("runs")
-        if runs:
-            return "".join(r.get("text", "") for r in runs)
-    return ""
-
-
 def gather(skill: str) -> list:
     client = ScavioClient()
     angles = [
@@ -54,18 +41,19 @@ def gather(skill: str) -> list:
             client.youtube.search(angle, sort_by="view_count").get("data") or {}
         ).get("results") or []
         for r in results[:6]:
-            vid = r.get("videoId")
+            vid = r.get("video_id")
             if not vid or vid in seen:
                 continue
             seen.add(vid)
+            views = r.get("view_count")
             videos.append(
                 {
                     "id": vid,
-                    "title": _text(r.get("title")),
-                    "channel": _text(r.get("ownerText")) or _text(r.get("longBylineText")),
-                    "views": _text(r.get("viewCountText")),
-                    "length": _text(r.get("lengthText")),
-                    "url": f"https://youtube.com/watch?v={vid}",
+                    "title": r.get("title") or "",
+                    "channel": (r.get("channel") or {}).get("name") or "",
+                    "views": f"{views:,}" if isinstance(views, int) else "",
+                    "length": r.get("duration_text") or "",
+                    "url": r.get("url") or f"https://youtube.com/watch?v={vid}",
                 }
             )
     return videos
@@ -96,7 +84,7 @@ def run(skill: str) -> str:
     import json
 
     videos = gather(skill)
-    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+    llm = ChatOpenAI(model="gpt-5.5", temperature=0)
     prompt = PROMPT.format(skill=skill, videos=json.dumps(videos, indent=1))
     return llm.invoke(prompt).content
 
