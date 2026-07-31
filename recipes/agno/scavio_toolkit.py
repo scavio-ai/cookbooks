@@ -56,6 +56,7 @@ class ScavioTools(Toolkit):
         if all or enable_amazon:
             tools.append(self.amazon_search)
             tools.append(self.amazon_product)
+            tools.append(self.amazon_offers)
         if all or enable_walmart:
             tools.append(self.walmart_search)
             tools.append(self.walmart_product)
@@ -143,38 +144,24 @@ class ScavioTools(Toolkit):
 
     # ------------------------------------------------------------------ Amazon
 
+    # Amazon moved upstream in 2026-07: sort_by, pages, category_id,
+    # merchant_id, language, currency, device, zip_code and
+    # autoselect_variant no longer exist. sort_by was verified inert (every
+    # value returns the same unordered set) so it is gone rather than kept as
+    # a no-op the model plans against. `domain` still works as a deprecated
+    # wire alias; `country` (us, gb, de, ...) is the one to use.
     def amazon_search(
         self,
         query: str,
-        domain: Optional[str] = None,
         country: Optional[str] = None,
-        language: Optional[str] = None,
-        currency: Optional[str] = None,
-        device: Optional[str] = None,
-        sort_by: Optional[str] = None,
-        start_page: Optional[int] = None,
-        pages: Optional[int] = None,
-        category_id: Optional[str] = None,
-        merchant_id: Optional[str] = None,
-        zip_code: Optional[str] = None,
-        autoselect_variant: Optional[bool] = None,
+        page: Optional[int] = None,
     ) -> str:
-        """Search Amazon for products matching a query.
+        """Search Amazon for products matching a query. Results are unsorted.
 
         Args:
             query (str): The product search query.
-            domain (Optional[str]): Amazon domain (e.g. "amazon.com").
-            country (Optional[str]): Delivery country code.
-            language (Optional[str]): Language code for results.
-            currency (Optional[str]): Currency code for prices.
-            device (Optional[str]): "desktop" or "mobile".
-            sort_by (Optional[str]): Sort order for results.
-            start_page (Optional[int]): First page to fetch.
-            pages (Optional[int]): Number of pages to fetch.
-            category_id (Optional[str]): Restrict to an Amazon category.
-            merchant_id (Optional[str]): Restrict to a merchant.
-            zip_code (Optional[str]): Delivery ZIP/postal code.
-            autoselect_variant (Optional[bool]): Auto-select a product variant when True.
+            country (Optional[str]): Marketplace country code (us, gb, de, ...).
+            page (Optional[int]): Result page, 1-based. 1 credit per page.
 
         Returns:
             str: JSON string of matching products.
@@ -182,56 +169,50 @@ class ScavioTools(Toolkit):
         return self._call(
             self.client.amazon.search,
             query,
-            domain=domain,
             country=country,
-            language=language,
-            currency=currency,
-            device=device,
-            sort_by=sort_by,
-            start_page=start_page,
-            pages=pages,
-            category_id=category_id,
-            merchant_id=merchant_id,
-            zip_code=zip_code,
-            autoselect_variant=autoselect_variant,
+            page=page,
         )
 
     def amazon_product(
         self,
         asin: str,
-        domain: Optional[str] = None,
         country: Optional[str] = None,
-        language: Optional[str] = None,
-        currency: Optional[str] = None,
-        device: Optional[str] = None,
-        zip_code: Optional[str] = None,
-        autoselect_variant: Optional[bool] = None,
     ) -> str:
         """Get full details for a single Amazon product by ASIN.
 
         Args:
             asin (str): The Amazon Standard Identification Number (ASIN).
-            domain (Optional[str]): Amazon domain (e.g. "amazon.com").
-            country (Optional[str]): Delivery country code.
-            language (Optional[str]): Language code for results.
-            currency (Optional[str]): Currency code for prices.
-            device (Optional[str]): "desktop" or "mobile".
-            zip_code (Optional[str]): Delivery ZIP/postal code.
-            autoselect_variant (Optional[bool]): Auto-select a product variant when True.
+            country (Optional[str]): Marketplace country code (us, gb, de, ...).
 
         Returns:
-            str: JSON string of the product details.
+            str: JSON string of the product details. `price` is the buy-box
+            price only -- use amazon_offers for competing sellers.
         """
         return self._call(
             self.client.amazon.product,
             asin,
-            domain=domain,
             country=country,
-            language=language,
-            currency=currency,
-            device=device,
-            zip_code=zip_code,
-            autoselect_variant=autoselect_variant,
+        )
+
+    def amazon_offers(
+        self,
+        asin: str,
+        country: Optional[str] = None,
+    ) -> str:
+        """List every seller offer for an Amazon ASIN. Page 1 only.
+
+        Args:
+            asin (str): The Amazon Standard Identification Number (ASIN).
+            country (Optional[str]): Marketplace country code (us, gb, de, ...).
+
+        Returns:
+            str: JSON string of offers: condition, seller_name, ships_from,
+            is_buy_box_winner, price, list_price, shipping_price.
+        """
+        return self._call(
+            self.client.amazon.offers,
+            asin,
+            country=country,
         )
 
     # ----------------------------------------------------------------- Walmart

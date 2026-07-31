@@ -10,7 +10,7 @@
  *   npm install
  *   export SCAVIO_API_KEY="sk_..."
  *
- * Cost: Instagram endpoints are 2 credits each (profile + posts = 4).
+ * Cost: profile is 8 credits, user posts is 2, so a full run costs 10.
  *
  * Run:
  *   npm run instagram-engagement -- nike

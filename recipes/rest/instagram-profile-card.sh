@@ -7,7 +7,7 @@
 # building block for influencer vetting and competitor tracking.
 #
 # Requires: curl, jq, SCAVIO_API_KEY (https://dashboard.scavio.dev).
-# Instagram endpoints cost 2 credits per call.
+# The Instagram profile endpoint costs 8 credits per call.
 #
 # Usage:
 #   ./instagram-profile-card.sh nike

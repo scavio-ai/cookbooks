@@ -6,7 +6,8 @@ a cap) and prints the overlap -- the accounts they both follow. A fast way to
 map a niche: who do two competing brands or two creators in a space both pay
 attention to.
 
-Instagram endpoints cost 2 credits per page (default cap = 2 pages each).
+The followings endpoint costs 8 credits per page (default cap = 2 pages each,
+so 32 credits for the two accounts at the default).
 
 Prerequisites:
   pip install scavio python-dotenv

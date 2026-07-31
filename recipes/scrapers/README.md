@@ -74,7 +74,8 @@ Every script: `POST https://api.scavio.dev/api/v1/<endpoint>` with
 - Amazon product takes the ASIN in the `query` field.
 - Walmart product takes `product_id`; TikTok user endpoints take `sec_user_id`
   (get it from `tiktok_profile_scraper.py`).
-- Reddit and Instagram calls cost 2 credits; most others cost 1.
+- Reddit calls cost 2 credits; most others cost 1.
+- Instagram calls cost 8 credits, except `user/posts`, which costs 2.
 
 ---
 

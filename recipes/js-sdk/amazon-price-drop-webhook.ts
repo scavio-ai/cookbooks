@@ -22,7 +22,9 @@ const query = (hasTarget ? args.slice(0, -1) : args).join(" ") || "sony wh-1000x
 const threshold = hasTarget ? target : 300;
 
 const client = new Scavio({ apiKey: process.env.SCAVIO_API_KEY });
-const res: any = await client.amazon.search({ query, sort_by: "price_low_to_high" });
+// Amazon results are unsorted and cannot be sorted upstream, so the cheapest
+// listing is picked client-side below.
+const res: any = await client.amazon.search({ query });
 
 const cheapest = (res.data?.products ?? [])
   .filter((p: any) => !p.is_sponsored && typeof p.price === "number" && p.price > 0)

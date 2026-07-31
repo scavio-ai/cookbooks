@@ -36,7 +36,8 @@ All endpoints are `POST https://api.scavio.dev/api/v1/...` with
 - YouTube search uses the `search` field (not `query`).
 - Amazon product takes the ASIN in the `query` field.
 - Walmart product takes `product_id`.
-- Reddit and Instagram calls cost 2 credits; most others cost 1.
+- Reddit calls cost 2 credits; most others cost 1.
+- Instagram calls cost 8 credits, except `user/posts`, which costs 2.
 
 ---
 
