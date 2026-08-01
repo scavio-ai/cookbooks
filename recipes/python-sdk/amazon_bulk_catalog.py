@@ -3,10 +3,14 @@ amazon_bulk_catalog.py -- turn a list of ASINs into a product CSV catalog.
 
 Feed it ASINs (args, a file, or stdin); it pulls full product detail for each
 and writes a tidy CSV: asin, title, brand, price, currency, rating, reviews,
-buybox seller. The backbone of any catalog sync, repricer, or arbitrage sheet.
+buy-box seller. The backbone of any catalog sync, repricer, or arbitrage sheet.
 
 Wire quirk handled for you: the product endpoint takes the ASIN in the
 "query" field; the SDK exposes it cleanly as client.amazon.product(asin).
+
+`price` is the buy-box price and `sold_by` is the seller holding it. The old
+`buybox[]` array is gone; for every competing seller on an ASIN (price,
+condition, shipping, who owns the buy box) call client.amazon.offers(asin).
 
 Prerequisites:
   pip install scavio python-dotenv
@@ -26,21 +30,35 @@ from scavio import ScavioClient
 
 load_dotenv(override=True)
 
-FIELDS = ["asin", "title", "brand", "price", "currency", "rating", "reviews_count", "seller"]
+FIELDS = [
+    "asin",
+    "title",
+    "brand",
+    "price",
+    "list_price",
+    "currency",
+    "rating",
+    "reviews_count",
+    "seller",
+    "has_buy_box",
+    "availability",
+]
 
 
 def snapshot(client: ScavioClient, asin: str) -> dict:
     data = client.amazon.product(asin).get("data", {})
-    buybox = (data.get("buybox") or [{}])[0]
     return {
         "asin": data.get("asin") or asin,
         "title": data.get("title"),
         "brand": data.get("brand"),
-        "price": buybox.get("price") or data.get("price"),
+        "price": data.get("price"),
+        "list_price": data.get("list_price"),
         "currency": data.get("currency"),
         "rating": data.get("rating"),
         "reviews_count": data.get("reviews_count"),
-        "seller": buybox.get("seller_name"),
+        "seller": data.get("sold_by"),
+        "has_buy_box": data.get("has_buy_box"),
+        "availability": data.get("availability"),
     }
 
 
