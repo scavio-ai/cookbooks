@@ -1,8 +1,7 @@
-# Scavio Cookbook: 104 real-world examples for the Scavio search API
+# Scavio Cookbook: 270+ real-world examples for the Scavio search API
 
-**104 runnable examples** -- AI agents, notebooks, no-code workflows, and a pure
-scraper for every endpoint -- that search **Google, YouTube, Amazon, Walmart,
-Reddit, TikTok, and Instagram** in real time, powered by the
+**270 runnable examples** -- AI agents, notebooks, no-code workflows, and a pure
+scraper for every endpoint -- covering **36 platforms** in real time, powered by the
 [Scavio](https://scavio.dev) search API.
 
 Built across **every way you'd actually use the API**: raw REST, the Python and
@@ -20,26 +19,26 @@ Agno, smolagents, Haystack, AutoGen, n8n, and MCP.
 
 ## What's inside
 
-- **One API, seven platforms** -- Google, YouTube, Amazon, Walmart, Reddit, TikTok, Instagram.
-- **Eleven integration surfaces** -- pick the one that matches your stack.
+- **One API, 36 platforms** -- Google, YouTube, Amazon, Walmart, Reddit, TikTok, Instagram, X/Twitter, LinkedIn, Facebook, GitHub, Pinterest, Etsy, Twitch, Threads, eBay, AliExpress, Airbnb, Booking.com, Yelp, TripAdvisor, Zillow, Redfin, Indeed, Glassdoor, Home Depot, Target, TikTok Shop, SEC, Companies House, Capterra, G2, Google Play, App Store, Google Ads, and Meta Ads.
+- **Twelve integration surfaces** -- pick the one that matches your stack.
 - **Free alternative** to SerpAPI, ScraperAPI, Bright Data, Jungle Scout, Fakespot, GummySearch, Modash, Keepa, and $149/month SEO tools.
 
 | Surface | Folder | Examples | Lang |
 |---|---|---|---|
 | Raw REST (curl + jq) | [`recipes/rest`](recipes/rest) | 6 | bash |
-| Pure API scrapers (one per endpoint) | [`recipes/scrapers`](recipes/scrapers) | 32 | Python |
+| Pure API scrapers (one per endpoint) | [`recipes/scrapers`](recipes/scrapers) | 178 | Python |
 | Python SDK (no LLM) | [`recipes/python-sdk`](recipes/python-sdk) | 7 | Python |
 | JS/TS SDK (no LLM) | [`recipes/js-sdk`](recipes/js-sdk) | 6 | TypeScript |
 | Vercel AI SDK | [`recipes/vercel-ai`](recipes/vercel-ai) | 4 | TypeScript |
-| LangChain agents | [`agents`](agents) | 14 | Python |
+| LangChain agents | [`agents`](agents) | 31 | Python |
 | LangChain notebooks | [`notebooks`](notebooks) | 19 | Jupyter |
 | CrewAI | [`recipes/crewai`](recipes/crewai) | 4 | Python |
-| Agno | [`recipes/agno`](recipes/agno) | 3 | Python |
-| smolagents | [`recipes/smolagents`](recipes/smolagents) | 2 | Python |
+| Agno | [`recipes/agno`](recipes/agno) | 4 | Python |
+| smolagents | [`recipes/smolagents`](recipes/smolagents) | 3 | Python |
 | Haystack | [`recipes/haystack`](recipes/haystack) | 2 | Python |
 | AutoGen | [`recipes/autogen`](recipes/autogen) | 2 | Python |
 | n8n (no-code) | [`recipes/n8n`](recipes/n8n) | 2 | JSON |
-| MCP | [`recipes/mcp`](recipes/mcp) | 1 | Python/JSON |
+| MCP | [`recipes/mcp`](recipes/mcp) | 2 | Python/JSON |
 
 Each `recipes/` subfolder has its own README and its own `requirements.txt` /
 `package.json` -- so the frameworks never fight over dependencies.
@@ -75,12 +74,107 @@ cp .env.example .env   # add SCAVIO_API_KEY (free) and OPENAI_API_KEY
 pip install -r requirements.txt
 python agents/instagram-scout.py "specialty coffee creators, 10k-250k followers"
 
+# a pure scraper (no LLM, no dependencies beyond requests)
+python recipes/scrapers/x_user_scraper.py "elonmusk"
+
 # a no-LLM SDK pipeline
 pip install -r recipes/python-sdk/requirements.txt
 python recipes/python-sdk/youtube_channel_dashboard.py "langchain agents tutorial"
 ```
 
 ## Catalog
+
+### Pure API scrapers -- `recipes/scrapers` (178 scripts, one per endpoint)
+
+Every Scavio endpoint has a matching `_scraper.py` -- a single-file Python script
+that calls the API with `requests`, no SDK, no LLM. Each scraper is under 60 lines,
+takes one CLI argument, and prints JSON.
+
+| Platform | Scrapers | Endpoints |
+|---|---|---|
+| Google | 8 | search, news, maps, maps/reviews, shopping, scholar, trends, lens |
+| YouTube | 7 | search, video, channel, comments, transcript, hashtag, playlist |
+| Amazon | 4 | search, product, reviews, bestsellers |
+| Walmart | 5 | search, product, reviews, categories, store |
+| Reddit | 6 | search, subreddit, post/comments, user, trending, hot |
+| TikTok | 6 | search, user/posts, user/info, video, hashtag, comments |
+| Instagram | 6 | profile, user/posts, hashtag, post, comments, user/reels |
+| X (Twitter) | 11 | user, user/tweets, tweet, search, followers, following, trending, lists, list/tweets, spaces, communities |
+| LinkedIn | 11 | profile, company, search/people, search/companies, posts, company/posts, jobs, job, ads/search, company/jobs, company/employees |
+| Facebook | 11 | profile, posts, post, hashtag, search, page, page/posts, group, group/posts, reel, video |
+| GitHub | 13 | repo/dossier, user/profile, user/repos, user/profile-velocity, repo/top-issues, repo/contributors, search/repos, search/users, search/code, email-finder, org, org/repos, repo/releases |
+| Pinterest | 6 | search, profile, board, pin, user/boards, url-stats |
+| Etsy | 5 | search, product, shop, shop/products, reviews |
+| Twitch | 4 | profile, user/videos, user/schedule, clip |
+| Threads | 6 | search/users, profile, user/posts, user/replies, post, post/comments |
+| eBay | 3 | search, product, seller |
+| AliExpress | 6 | search, product, reviews, category, store, store/products |
+| Airbnb | 3 | search, listing, reviews |
+| Booking.com | 3 | search, hotel, reviews |
+| Yelp | 3 | search, business, reviews |
+| TripAdvisor | 4 | search, attraction, restaurant, reviews |
+| Zillow | 3 | search, property, agent |
+| Redfin | 3 | search, property, market |
+| Indeed | 4 | search, job, company, salary |
+| Glassdoor | 4 | companies, company, reviews, salaries |
+| Home Depot | 3 | search, product, reviews |
+| Target | 4 | search, product, reviews, categories |
+| TikTok Shop | 8 | search, product, reviews, categories, category/products, shop/products, resolve, suggestions |
+| SEC | 6 | lookup, company, filings, facts, insider, institutions |
+| Companies House | 4 | search, company, officers, filings |
+| Capterra | 3 | search, product, reviews |
+| G2 | 3 | search, product, reviews |
+| Google Play | 3 | search, app, reviews |
+| App Store | 3 | search, app, reviews |
+| Google Ads | 3 | advertisers, search, advertiser |
+| Meta Ads | 3 | search, ad, page |
+
+### LangChain agents -- `agents` (31 agents)
+
+| Agent | What it does | Platforms |
+|---|---|---|
+| `instagram-scout.py` | Creator discovery shortlist | Instagram |
+| `instagram-competitor-watch.py` | Competitor content monitor | Instagram |
+| `local-deal-scout.py` | Best Walmart deals in a category | Walmart |
+| `amazon-review-miner.py` | Mine reviews for praise/complaints | Amazon |
+| `youtube-course-builder.py` | YouTube search to ordered curriculum | YouTube |
+| `momentum-radar.py` | Cross-platform momentum score | Multi |
+| `amazon-agent.py` | Full-stack Amazon research agent | Amazon |
+| `brandpulse.py` | Brand sentiment across platforms | Multi |
+| `buyornot.py` | Purchase decision agent | Amazon + Reddit |
+| `pricewar.py` | Cross-retailer price comparison | Amazon + Walmart |
+| `reddit-radar.py` | Reddit intelligence agent | Reddit |
+| `shopping-agent.py` | Shopping assistant | Amazon + Walmart |
+| `tikfluencer.py` | TikTok influencer finder | TikTok |
+| `trendtap.py` | Trend detection agent | Multi |
+| `github-due-diligence.py` | Repo DD for investors | GitHub |
+| `facebook-brand-monitor.py` | Brand monitoring via Facebook | Facebook |
+| `linkedin-lead-finder.py` | B2B lead generation | LinkedIn |
+| `x-trend-tracker.py` | Trending intelligence on X | X/Twitter |
+| `etsy-market-researcher.py` | Handmade market analysis | Etsy |
+| `airbnb-market-analyzer.py` | Rental market analysis | Airbnb |
+| `zillow-investment-scout.py` | Real estate investment scout | Zillow + Redfin |
+| `indeed-job-market.py` | Job market intelligence | Indeed |
+| `glassdoor-company-intel.py` | Employer brand intel | Glassdoor |
+| `ad-spy.py` | Competitive ad intelligence | Meta Ads + Google Ads + LinkedIn |
+| `app-store-tracker.py` | ASO + competitor tracking | App Store + Google Play |
+| `ebay-flipper.py` | E-commerce arbitrage finder | eBay + Amazon |
+| `yelp-reputation-monitor.py` | Local business reputation monitor | Yelp |
+| `sec-filing-analyst.py` | Public company filing analyst | SEC |
+| `pinterest-content-planner.py` | Visual content strategy planner | Pinterest |
+| `twitch-streamer-scout.py` | Sponsorship scouting for streamers | Twitch |
+| `threads-growth-finder.py` | Growth opportunity finder | Threads |
+
+### LangChain notebooks -- `notebooks` (19 notebooks)
+| Notebook | Platform |
+|---|---|
+| `instagram-hashtag-analyzer.ipynb` | Instagram |
+| `instagram-profile-analytics.ipynb` | Instagram |
+| `amazon-bestseller-rank-tracker.ipynb` | Amazon |
+| `google-knowledge-graph-extractor.ipynb` | Google |
+| `tiktok-comment-sentiment.ipynb` | TikTok |
+
+(Plus the original 14 notebooks -- see the folder.)
 
 ### Raw REST -- `recipes/rest` (curl + jq, no LLM)
 | Example | Platform |
@@ -121,26 +215,6 @@ python recipes/python-sdk/youtube_channel_dashboard.py "langchain agents tutoria
 | `instagram-influencer-vet.ts` -- creator discovery + vetting | Instagram |
 | `shopping-route.ts` -- Next.js shopping endpoint | Amazon + Walmart |
 
-### LangChain -- `agents` (new) + `notebooks` (new)
-| New agent | Platform |
-|---|---|
-| `instagram-scout.py` -- creator discovery shortlist | Instagram |
-| `instagram-competitor-watch.py` -- competitor content monitor | Instagram |
-| `local-deal-scout.py` -- best Walmart deals in a category | Walmart |
-| `amazon-review-miner.py` -- mine reviews for praise/complaints | Amazon |
-| `youtube-course-builder.py` -- YouTube to ordered curriculum | YouTube |
-| `momentum-radar.py` -- cross-platform momentum score | Multi |
-
-| New notebook | Platform |
-|---|---|
-| `instagram-hashtag-analyzer.ipynb` -- rank hashtags by volume | Instagram |
-| `instagram-profile-analytics.ipynb` -- engagement + theme snapshot | Instagram |
-| `amazon-bestseller-rank-tracker.ipynb` -- category leaders | Amazon |
-| `google-knowledge-graph-extractor.ipynb` -- structured entity facts | Google |
-| `tiktok-comment-sentiment.ipynb` -- comment sentiment (SDK + LLM) | TikTok |
-
-(Plus the original 8 agents and 14 notebooks -- see their folders.)
-
 ### Multi-agent frameworks
 | Example | Framework | Platforms |
 |---|---|---|
@@ -151,8 +225,10 @@ python recipes/python-sdk/youtube_channel_dashboard.py "langchain agents tutoria
 | `recipes/agno/agno-shopping-assistant.py` | Agno | Amazon + Walmart |
 | `recipes/agno/agno-social-listener.py` | Agno | Reddit + TikTok + Instagram |
 | `recipes/agno/agno-research-team.py` | Agno | Google + YouTube |
+| `recipes/agno/agno-local-search.py` | Agno | Google Maps |
 | `recipes/smolagents/smolagents-web-researcher.py` | smolagents | Google |
 | `recipes/smolagents/smolagents-fact-checker.py` | smolagents | Google |
+| `recipes/smolagents/smolagents-price-tracker.py` | smolagents | Amazon |
 | `recipes/haystack/haystack-rag-websearch.ipynb` | Haystack | Google |
 | `recipes/haystack/haystack-news-qa.py` | Haystack | Google |
 | `recipes/autogen/autogen-shopping-groupchat.py` | AutoGen | Amazon + Walmart + YouTube |
@@ -168,7 +244,7 @@ python recipes/python-sdk/youtube_channel_dashboard.py "langchain agents tutoria
 
 ## Using Scavio via MCP
 
-Scavio runs a hosted MCP server at `https://mcp.scavio.dev/mcp` exposing all 33
+Scavio runs a hosted MCP server at `https://mcp.scavio.dev/mcp` exposing all
 endpoints as tools. Point any MCP client at it with your key in the `x-api-key`
 header -- see [`recipes/mcp`](recipes/mcp).
 
@@ -183,6 +259,10 @@ header -- see [`recipes/mcp`](recipes/mcp).
 | TikTok / Instagram creator discovery | Modash ($99-399/mo) | `recipes/crewai/influencer-campaign-crew.py` |
 | Price tracking | Keepa / CamelCamelCamel | `recipes/python-sdk/walmart_price_logger.py` |
 | Brand monitoring | Brand24 ($99-299/mo) | `recipes/vercel-ai/reddit-sentiment-tool.ts` |
+| Real estate analysis | Mashvisor ($60-300/mo) | `agents/zillow-investment-scout.py` |
+| Job market intelligence | LinkedIn Recruiter ($170+/mo) | `agents/indeed-job-market.py` |
+| Ad intelligence | AdBeat ($249+/mo) | `agents/ad-spy.py` |
+| GitHub due diligence | Bitsight / Snyk ($$$) | `agents/github-due-diligence.py` |
 
 ## SDK cheat sheet
 
@@ -210,9 +290,8 @@ await c.tiktok.searchUsers({ keyword: "coffee" });
 ## FAQ
 
 **Is this a free alternative to SerpAPI or ScraperAPI?**
-Yes. 50 free real-time credits to start (one-time, no card) across Google,
-Amazon, YouTube, Walmart, Reddit, TikTok, and Instagram -- enough to build and
-test a project. Paid plans add monthly credits when you need more.
+Yes. 50 free real-time credits to start (one-time, no card) across 36 platforms --
+enough to build and test a project. Paid plans add monthly credits when you need more.
 
 **Which frameworks are supported?**
 LangChain, the Vercel AI SDK, CrewAI, Agno, smolagents, Haystack, and AutoGen
@@ -222,7 +301,7 @@ Every framework has at least one example here.
 **Does it work with OpenAI, Claude, Gemini, local models?**
 Yes -- the LLM is yours to choose. Examples default to OpenAI; swap freely.
 
-**Is scraping Amazon / Instagram legal?**
+**Is scraping Amazon / Instagram / X legal?**
 You call Scavio's licensed real-time search API, not the platforms directly.
 Your IP never gets blocked.
 
@@ -241,6 +320,6 @@ PRs welcome:
 
 ---
 
-**Keywords:** ai search api, serpapi alternative free, scraperapi alternative, amazon product api python, walmart api, youtube data api alternative, reddit search api, tiktok api, instagram api, langchain search tool, vercel ai sdk tools, crewai tools, agno tools, smolagents web search, haystack websearch, autogen tools, n8n scavio node, mcp search server, people also ask api, google serp api, ai shopping agent, influencer discovery api, brand monitoring api, price tracking api, retail arbitrage, seo keyword research api.
+**Keywords:** ai search api, serpapi alternative free, scraperapi alternative, amazon product api python, walmart api, youtube data api alternative, reddit search api, tiktok api, instagram api, x twitter api, linkedin api, facebook api, github api, pinterest api, etsy api, ebay api, zillow api, indeed api, glassdoor api, airbnb api, booking api, sec api, langchain search tool, vercel ai sdk tools, crewai tools, agno tools, smolagents web search, haystack websearch, autogen tools, n8n scavio node, mcp search server, people also ask api, google serp api, ai shopping agent, influencer discovery api, brand monitoring api, price tracking api, retail arbitrage, seo keyword research api, real estate api, job market api, ad intelligence api, app store api, google play api.
 
 Powered by **[Scavio](https://scavio.dev)** -- the real-time search API for AI agents.
